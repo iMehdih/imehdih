@@ -1,0 +1,35 @@
+// src/app/api/projects/[id]/route.ts
+import { NextRequest, NextResponse } from 'next/server'
+import { connectDB } from '@/lib/db/mongoose'
+import Project from '@/models/Project'
+import { requireAuth } from '@/lib/auth/middleware'
+
+export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const auth = await requireAuth(req)
+    const { id } = await params
+    await connectDB()
+
+    const project = await Project.findById(id)
+      .populate('customerId', 'firstName lastName mobile')
+      .populate('assignedTo', 'firstName lastName')
+      .populate('templateId', 'title tasks')
+      .lean()
+
+    if (!project) return NextResponse.json({ success: false, error: 'یافت نشد' }, { status: 404 })
+
+    const p = project as any
+
+    // مشتری فقط پروژه خودش رو میبینه
+    if (auth.role === 'customer' && p.customerId?._id?.toString() !== auth.userId) {
+      return NextResponse.json({ success: false, error: 'FORBIDDEN' }, { status: 403 })
+    }
+
+    return NextResponse.json({ success: true, data: project })
+  } catch (err) {
+    if (err instanceof Error && err.message === 'UNAUTHORIZED') {
+      return NextResponse.json({ success: false, error: 'UNAUTHORIZED' }, { status: 401 })
+    }
+    return NextResponse.json({ success: false, error: 'خطای سرور' }, { status: 500 })
+  }
+}
