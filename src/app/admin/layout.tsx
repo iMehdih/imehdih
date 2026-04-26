@@ -14,11 +14,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (!payload || payload.role !== 'admin') redirect('/auth/login')
 
   return (
-    <div className="admin-root">
+    <div className="db-root">
       <AdminSidebar />
-      <div className="admin-main">
+      <div className="db-main">
         <AdminTopbar adminName="مهدی حاتم‌پور" />
-        <main className="admin-content">{children}</main>
+        <main className="db-content">{children}</main>
       </div>
       <MobileMenu />
     </div>

@@ -6,12 +6,19 @@ import { connectDB } from '@/lib/db/mongoose'
 import Product from '@/models/Product'
 import Link from 'next/link'
 import AddToCartButton from '@/components/ui/AddToCartButton'
+import ProductGallery from '@/components/ui/ProductGallery'
+import ProductTabs from '@/components/ui/ProductTabs'
 
 const typeLabels: Record<string, string> = {
   theme: 'قالب وردپرس', plugin: 'افزونه وردپرس',
   course: 'دوره آموزشی', file: 'فایل دیجیتال',
   service_project: 'خدمت پروژه‌ای', service_recurring: 'سرویس مستمر',
   hosting: 'هاست', domain: 'دامنه', subscription_pro: 'اشتراک Pro',
+}
+
+const typeArchive: Record<string, string> = {
+  theme: '/themes', plugin: '/plugins', course: '/courses',
+  file: '/files', service_project: '/services', service_recurring: '/services',
 }
 
 export default async function ProductDetailPage({
@@ -31,10 +38,83 @@ export default async function ProductDetailPage({
   const hasDiscount = p.salePrice && p.salePrice < p.price
   const discountPct = hasDiscount ? Math.round((1 - p.salePrice / p.price) * 100) : 0
 
-  // user وارد شده؟
   const cookieStore = await cookies()
   const token = cookieStore.get('hp_token')?.value
   const isLoggedIn = !!token && !!(await verifyToken(token))
+
+  const archivePath = typeArchive[p.type] || '/themes'
+
+  // Build tab content (server-side rendered nodes passed to client component)
+  const descriptionContent = (
+    <div style={{ fontSize: 14.5, color: 'var(--t2)', lineHeight: 2, whiteSpace: 'pre-wrap' }}>
+      {p.description || p.shortDescription || 'توضیحاتی ثبت نشده.'}
+    </div>
+  )
+
+  const specsContent = (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+      {[
+        p.meta?.version && { label: 'نسخه', value: p.meta.version },
+        p.supportDuration && { label: 'مدت پشتیبانی', value: `${p.supportDuration} روز` },
+        p.meta?.wpCompatibility && { label: 'سازگاری وردپرس', value: `WP ${p.meta.wpCompatibility}` },
+        p.meta?.lessons && { label: 'تعداد جلسات', value: `${p.meta.lessons} جلسه` },
+        p.meta?.duration && { label: 'مدت دوره', value: p.meta.duration },
+        p.type && { label: 'نوع', value: typeLabels[p.type] || p.type },
+        p.downloadCount > 0 && { label: 'تعداد دانلود', value: p.downloadCount.toLocaleString('fa') },
+      ].filter(Boolean).map((row: any, i: number) => (
+        <div key={i} style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          padding: '12px 0', borderBottom: '1px solid var(--bd)', fontSize: 13.5,
+        }}>
+          <span style={{ color: 'var(--t3)' }}>{row.label}</span>
+          <span style={{ fontWeight: 700 }}>{row.value}</span>
+        </div>
+      ))}
+      {p.tags?.length > 0 && (
+        <div style={{ paddingTop: 14, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          {p.tags.map((tag: string) => (
+            <span key={tag} style={{ fontSize: 11.5, padding: '4px 10px', borderRadius: 100, background: 'var(--b2)', border: '1px solid var(--bd)', color: 'var(--t3)' }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+
+  const reviewsContent = (
+    <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--t3)' }}>
+      <div style={{ fontSize: 36, marginBottom: 12 }}>★</div>
+      <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>
+        {p.rating > 0 ? `امتیاز: ${p.rating} از ۵` : 'هنوز نظری ثبت نشده'}
+      </div>
+      {p.reviewCount > 0 && (
+        <div style={{ fontSize: 13, color: 'var(--t3)' }}>{p.reviewCount} نظر</div>
+      )}
+      <div style={{ marginTop: 20, fontSize: 13, color: 'var(--t3)' }}>
+        سیستم نظردهی به زودی راه‌اندازی می‌شود.
+      </div>
+    </div>
+  )
+
+  const faqContent = (
+    <div style={{ fontSize: 14, color: 'var(--t2)', lineHeight: 2 }}>
+      {p.meta?.faq ? (
+        <div style={{ whiteSpace: 'pre-wrap' }}>{p.meta.faq}</div>
+      ) : (
+        <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--t3)' }}>
+          سوالات متداول برای این محصول ثبت نشده.
+        </div>
+      )}
+    </div>
+  )
+
+  const tabs = [
+    { key: 'desc', label: 'توضیحات', content: descriptionContent },
+    { key: 'specs', label: 'مشخصات', content: specsContent },
+    { key: 'reviews', label: `نظرات${p.reviewCount > 0 ? ` (${p.reviewCount})` : ''}`, content: reviewsContent },
+    { key: 'faq', label: 'سوالات', content: faqContent },
+  ]
 
   return (
     <div className="container" style={{ padding: '32px 28px' }}>
@@ -42,34 +122,22 @@ export default async function ProductDetailPage({
       <div className="breadcrumb">
         <Link href="/">خانه</Link>
         <span>›</span>
-        <Link href={`/${p.type === 'theme' ? 'themes' : p.type === 'plugin' ? 'plugins' : p.type === 'course' ? 'courses' : 'products'}`}>
-          {typeLabels[p.type] || p.type}
-        </Link>
+        <Link href={archivePath}>{typeLabels[p.type] || p.type}</Link>
         <span>›</span>
         <span>{p.title}</span>
       </div>
 
       <div className="product-detail-grid">
-        {/* Left: Detail */}
+        {/* Left: Gallery + Tabs */}
         <div>
-          {/* Thumbnail */}
-          <div style={{
-            height: 360, background: 'var(--b1)', border: '1px solid var(--bd)',
-            borderRadius: 16, overflow: 'hidden', marginBottom: 28,
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            {p.thumbnail
-              ? <img src={p.thumbnail} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              : <div style={{ fontSize: 64, color: 'var(--t3)', opacity: .3 }}>▣</div>
-            }
+          {/* Gallery */}
+          <div style={{ marginBottom: 28 }}>
+            <ProductGallery thumbnail={p.thumbnail} images={p.meta?.images || []} title={p.title} />
           </div>
 
-          {/* Description */}
-          <div style={{ background: 'var(--b1)', border: '1px solid var(--bd)', borderRadius: 14, padding: 24 }}>
-            <h2 style={{ fontSize: 17, fontWeight: 800, marginBottom: 14 }}>توضیحات</h2>
-            <div style={{ fontSize: 14, color: 'var(--t2)', lineHeight: 1.9, whiteSpace: 'pre-wrap' }}>
-              {p.description || p.shortDescription || 'توضیحاتی ثبت نشده.'}
-            </div>
+          {/* Tabs */}
+          <div style={{ background: 'var(--b1)', border: '1px solid var(--bd)', borderRadius: 14, overflow: 'hidden' }}>
+            <ProductTabs tabs={tabs} />
           </div>
         </div>
 
@@ -116,7 +184,7 @@ export default async function ProductDetailPage({
               )}
             </div>
 
-            {/* Meta */}
+            {/* Key meta */}
             <div style={{ padding: '14px 22px', borderBottom: '1px solid var(--bd)' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {p.meta?.version && (
@@ -139,8 +207,14 @@ export default async function ProductDetailPage({
                 )}
                 {p.meta?.lessons && (
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-                    <span style={{ color: 'var(--t3)' }}>تعداد جلسات</span>
+                    <span style={{ color: 'var(--t3)' }}>جلسات</span>
                     <span style={{ fontWeight: 700 }}>{p.meta.lessons} جلسه</span>
+                  </div>
+                )}
+                {p.downloadCount > 0 && (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
+                    <span style={{ color: 'var(--t3)' }}>دانلود</span>
+                    <span style={{ fontWeight: 700 }}>{p.downloadCount.toLocaleString('fa')} بار</span>
                   </div>
                 )}
               </div>
