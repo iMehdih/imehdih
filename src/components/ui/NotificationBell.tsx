@@ -33,7 +33,7 @@ export default function NotificationBell({ href = '/dashboard/notifications' }: 
         <span style={{
           position: 'absolute', top: -4, left: -4,
           minWidth: 17, height: 17, borderRadius: 100,
-          background: '#EF4444', color: '#fff',
+          background: 'var(--red)', color: '#fff',
           fontSize: 9.5, fontWeight: 900,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           padding: '0 4px', border: '2px solid var(--bg)',

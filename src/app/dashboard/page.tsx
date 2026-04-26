@@ -124,10 +124,10 @@ export default async function DashboardPage() {
                       <tr key={order._id.toString()}>
                         <td>
                           {order.items[0]?.title}
-                          {order.items.length > 1 && <span style={{ fontSize: 10.5, color: '#505062', marginRight: 4 }}>+{order.items.length - 1}</span>}
+                          {order.items.length > 1 && <span style={{ fontSize: 10.5, color: 'var(--t3)', marginRight: 4 }}>+{order.items.length - 1}</span>}
                         </td>
                         <td style={{ fontSize: 11.5 }}>{new Date(order.createdAt).toLocaleDateString('fa-IR')}</td>
-                        <td style={{ color: '#C8A96E', fontWeight: 800 }}>{order.finalAmount.toLocaleString('fa')} ت</td>
+                        <td style={{ color: 'var(--gold)', fontWeight: 800 }}>{order.finalAmount.toLocaleString('fa')} ت</td>
                         <td><span className={`db-badge db-badge-${st.cls}`}>{st.label}</span></td>
                       </tr>
                     )
@@ -150,21 +150,21 @@ export default async function DashboardPage() {
                 <div style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                     <span style={{ fontSize: 12.5, fontWeight: 700 }}>هاست example.ir</span>
-                    <span style={{ fontSize: 11, color: '#EF4444', fontWeight: 700 }}>۱۲ روز مانده</span>
+                    <span style={{ fontSize: 11, color: 'var(--red)', fontWeight: 700 }}>۱۲ روز مانده</span>
                   </div>
                   <div className="db-prog-wrap"><div className="db-prog-fill red" style={{ width: '8%' }}></div></div>
                 </div>
                 <div style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                     <span style={{ fontSize: 12.5, fontWeight: 700 }}>دامنه mystore.ir</span>
-                    <span style={{ fontSize: 11, color: '#F59E0B', fontWeight: 700 }}>۴۵ روز مانده</span>
+                    <span style={{ fontSize: 11, color: 'var(--yellow)', fontWeight: 700 }}>۴۵ روز مانده</span>
                   </div>
-                  <div className="db-prog-wrap"><div className="db-prog-fill" style={{ width: '35%', background: 'linear-gradient(90deg,#B45309,#F59E0B)' }}></div></div>
+                  <div className="db-prog-wrap"><div className="db-prog-fill" style={{ width: '35%', background: 'linear-gradient(90deg,#B45309,var(--yellow))' }}></div></div>
                 </div>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                     <span style={{ fontSize: 12.5, fontWeight: 700 }}>اشتراک Pro</span>
-                    <span style={{ fontSize: 11, color: '#22C55E', fontWeight: 700 }}>۸۵ روز مانده</span>
+                    <span style={{ fontSize: 11, color: 'var(--green)', fontWeight: 700 }}>۸۵ روز مانده</span>
                   </div>
                   <div className="db-prog-wrap"><div className="db-prog-fill green" style={{ width: '72%' }}></div></div>
                 </div>
@@ -197,22 +197,22 @@ export default async function DashboardPage() {
                 <div style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                     <span style={{ fontSize: 12.5, fontWeight: 700 }}>وووکامرس پیشرفته</span>
-                    <span style={{ fontSize: 11, color: '#505062' }}>۶۵٪</span>
+                    <span style={{ fontSize: 11, color: 'var(--t3)' }}>۶۵٪</span>
                   </div>
                   <div className="db-prog-wrap"><div className="db-prog-fill blue" style={{ width: '65%' }}></div></div>
-                  <div style={{ fontSize: 11, color: '#505062', marginTop: 4 }}>فصل ۵ از ۸ — تنظیمات پرداخت</div>
+                  <div style={{ fontSize: 11, color: 'var(--t3)', marginTop: 4 }}>فصل ۵ از ۸ — تنظیمات پرداخت</div>
                 </div>
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
                     <span style={{ fontSize: 12.5, fontWeight: 700 }}>سئو وردپرس</span>
-                    <span style={{ fontSize: 11, color: '#505062' }}>۲۰٪</span>
+                    <span style={{ fontSize: 11, color: 'var(--t3)' }}>۲۰٪</span>
                   </div>
                   <div className="db-prog-wrap"><div className="db-prog-fill blue" style={{ width: '20%' }}></div></div>
-                  <div style={{ fontSize: 11, color: '#505062', marginTop: 4 }}>فصل ۲ از ۱۰ — کلمات کلیدی</div>
+                  <div style={{ fontSize: 11, color: 'var(--t3)', marginTop: 4 }}>فصل ۲ از ۱۰ — کلمات کلیدی</div>
                 </div>
               </>
             ) : (
-              <div style={{ padding: '20px', textAlign: 'center', color: '#505062', fontSize: 13 }}>
+              <div style={{ padding: '20px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>
                 دوره‌ای برای نمایش وجود ندارد
               </div>
             )}
@@ -247,7 +247,7 @@ export default async function DashboardPage() {
                   }}>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 3 }}>{ticket.title}</div>
-                      <div style={{ fontSize: 11, color: '#505062', display: 'flex', gap: 10 }}>
+                      <div style={{ fontSize: 11, color: 'var(--t3)', display: 'flex', gap: 10 }}>
                         <span>#{ticket.ticketNumber}</span>
                         <span>{new Date(ticket.createdAt).toLocaleDateString('fa-IR')}</span>
                       </div>

@@ -93,7 +93,7 @@ export default async function AdminTicketDetailPage({
   return (
     <div className="admin-page">
       {/* Back */}
-      <Link href="/admin/tickets" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12.5, color: '#8888A0', marginBottom: 16, textDecoration: 'none' }}>
+      <Link href="/admin/tickets" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12.5, color: 'var(--t2)', marginBottom: 16, textDecoration: 'none' }}>
         ← بازگشت به لیست
       </Link>
 
@@ -108,19 +108,19 @@ export default async function AdminTicketDetailPage({
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, flexWrap: 'wrap' }}>
                     <span className={`admin-badge admin-badge-${st.cls}`}>{st.label}</span>
-                    <span style={{ fontSize: 11, color: '#505062' }}>#{t.ticketNumber}</span>
+                    <span style={{ fontSize: 11, color: 'var(--t3)' }}>#{t.ticketNumber}</span>
                     <span className="admin-badge admin-badge-gray" style={{ fontSize: 9.5 }}>
                       {deptLabels[t.department] || t.department}
                     </span>
                   </div>
                   <div style={{ fontSize: 18, fontWeight: 900, marginBottom: 8 }}>{t.title}</div>
-                  <div style={{ display: 'flex', gap: 14, fontSize: 11.5, color: '#505062', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: 14, fontSize: 11.5, color: 'var(--t3)', flexWrap: 'wrap' }}>
                     <span>ثبت: {new Date(t.createdAt).toLocaleString('fa-IR')}</span>
                     {t.relatedDomain && (
-                      <span>دامنه: <strong style={{ color: '#C8A96E' }}>{t.relatedDomain}</strong></span>
+                      <span>دامنه: <strong style={{ color: 'var(--gold)' }}>{t.relatedDomain}</strong></span>
                     )}
                     {t.assignedTo && (
-                      <span>کارشناس: <strong style={{ color: '#EEEEF2' }}>{t.assignedTo.firstName} {t.assignedTo.lastName}</strong></span>
+                      <span>کارشناس: <strong style={{ color: 'var(--t)' }}>{t.assignedTo.firstName} {t.assignedTo.lastName}</strong></span>
                     )}
                   </div>
                 </div>
@@ -147,20 +147,20 @@ export default async function AdminTicketDetailPage({
                       background: isStaff ? 'rgba(96,165,250,0.15)' : 'rgba(200,169,110,0.12)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: 11, fontWeight: 900,
-                      color: isStaff ? '#60A5FA' : '#C8A96E', flexShrink: 0,
+                      color: isStaff ? 'var(--blue)' : 'var(--gold)', flexShrink: 0,
                     }}>
                       {isStaff ? 'پ' : 'م'}
                     </div>
                     <div>
-                      <span style={{ fontSize: 12.5, fontWeight: 800, color: isStaff ? '#60A5FA' : '#C8A96E' }}>
+                      <span style={{ fontSize: 12.5, fontWeight: 800, color: isStaff ? 'var(--blue)' : 'var(--gold)' }}>
                         {msg.senderName}
                       </span>
-                      <span style={{ fontSize: 10.5, color: '#505062', marginRight: 8 }}>
+                      <span style={{ fontSize: 10.5, color: 'var(--t3)', marginRight: 8 }}>
                         {msg.createdAt ? new Date(msg.createdAt).toLocaleString('fa-IR') : ''}
                       </span>
                     </div>
                   </div>
-                  <div style={{ padding: '14px 16px', fontSize: 13.5, color: '#EEEEF2', lineHeight: 1.85, whiteSpace: 'pre-wrap' }}>
+                  <div style={{ padding: '14px 16px', fontSize: 13.5, color: 'var(--t)', lineHeight: 1.85, whiteSpace: 'pre-wrap' }}>
                     {msg.content}
                   </div>
                 </div>
@@ -191,19 +191,19 @@ export default async function AdminTicketDetailPage({
               {customer && (
                 <>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,#C8A96E,#A8843A)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 900, flexShrink: 0 }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg,var(--gold),var(--gold3))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 900, flexShrink: 0 }}>
                       {customer.firstName?.[0] || customer.mobile?.[2]}
                     </div>
                     <div>
                       <div style={{ fontSize: 13, fontWeight: 800 }}>
                         {customer.firstName ? `${customer.firstName} ${customer.lastName}` : 'تکمیل نشده'}
-                        {customer.isVIP && <span style={{ fontSize: 9, fontWeight: 900, background: '#C8A96E', color: '#000', padding: '1px 6px', borderRadius: 100, marginRight: 5 }}>VIP</span>}
+                        {customer.isVIP && <span style={{ fontSize: 9, fontWeight: 900, background: 'var(--gold)', color: '#000', padding: '1px 6px', borderRadius: 100, marginRight: 5 }}>VIP</span>}
                       </div>
-                      <div style={{ fontSize: 11, color: '#505062' }}>{customer.mobile}</div>
+                      <div style={{ fontSize: 11, color: 'var(--t3)' }}>{customer.mobile}</div>
                     </div>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
-                    <span style={{ color: '#505062' }}>امتیاز</span>
+                    <span style={{ color: 'var(--t3)' }}>امتیاز</span>
                     <span style={{ fontWeight: 700 }}>{customer.customerScore}/100</span>
                   </div>
                 </>
@@ -215,11 +215,11 @@ export default async function AdminTicketDetailPage({
           <div className="admin-card">
             <div className="admin-card-head">
               <div className="admin-card-title">سابقه تیکت‌ها</div>
-              <span style={{ fontSize: 10.5, color: '#505062' }}>{(previousTickets as any[]).length} تیکت</span>
+              <span style={{ fontSize: 10.5, color: 'var(--t3)' }}>{(previousTickets as any[]).length} تیکت</span>
             </div>
             <div>
               {(previousTickets as any[]).length === 0 ? (
-                <div style={{ padding: '14px 16px', fontSize: 12, color: '#505062' }}>تیکت قبلی ندارد</div>
+                <div style={{ padding: '14px 16px', fontSize: 12, color: 'var(--t3)' }}>تیکت قبلی ندارد</div>
               ) : (previousTickets as any[]).map(pt => {
                 const ps = statusMap[pt.status] || { label: pt.status, cls: 'gray' }
                 return (
@@ -229,14 +229,14 @@ export default async function AdminTicketDetailPage({
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                      <div style={{ fontSize: 12.5, color: '#EEEEF2', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+                      <div style={{ fontSize: 12.5, color: 'var(--t)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
                         {pt.title}
                       </div>
                       <span className={`admin-badge admin-badge-${ps.cls}`} style={{ fontSize: 9, flexShrink: 0 }}>
                         {ps.label}
                       </span>
                     </div>
-                    <div style={{ fontSize: 10.5, color: '#505062', marginTop: 3 }}>
+                    <div style={{ fontSize: 10.5, color: 'var(--t3)', marginTop: 3 }}>
                       #{pt.ticketNumber} · {new Date(pt.createdAt).toLocaleDateString('fa-IR')}
                     </div>
                   </a>
@@ -255,15 +255,15 @@ export default async function AdminTicketDetailPage({
                 <div key={o._id.toString()} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
                   <div>
                     <div style={{ fontWeight: 600 }}>{o.items?.[0]?.title}</div>
-                    <div style={{ fontSize: 10.5, color: '#505062' }}>#{o.orderNumber}</div>
+                    <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>#{o.orderNumber}</div>
                   </div>
-                  <div style={{ color: '#C8A96E', fontWeight: 800, fontSize: 11.5 }}>
+                  <div style={{ color: 'var(--gold)', fontWeight: 800, fontSize: 11.5 }}>
                     {(o.finalAmount / 1000).toFixed(0)}ک
                   </div>
                 </div>
               ))}
               {(customerOrders as any[]).length === 0 && (
-                <div style={{ fontSize: 12, color: '#505062' }}>سفارشی ندارد</div>
+                <div style={{ fontSize: 12, color: 'var(--t3)' }}>سفارشی ندارد</div>
               )}
             </div>
           </div>

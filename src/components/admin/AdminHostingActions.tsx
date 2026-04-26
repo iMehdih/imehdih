@@ -42,16 +42,16 @@ export default function AdminHostingActions({ hostingId, currentStatus }: Props)
               onChange={e => setServerIp(e.target.value)}
               placeholder="IP سرور"
               dir="ltr"
-              style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: '#141420', color: '#fff', fontFamily: 'inherit', fontSize: 11.5, width: 120 }}
+              style={{ padding: '4px 8px', borderRadius: 6, border: '1px solid rgba(255,255,255,0.1)', background: 'var(--b2)', color: '#fff', fontFamily: 'inherit', fontSize: 11.5, width: 120 }}
             />
             <button onClick={() => updateStatus('active')} disabled={loading}
-              style={{ padding: '4px 10px', borderRadius: 6, background: '#22C55E', color: '#000', border: 'none', cursor: 'pointer', fontSize: 11.5, fontFamily: 'inherit' }}>
+              style={{ padding: '4px 10px', borderRadius: 6, background: 'var(--green)', color: '#000', border: 'none', cursor: 'pointer', fontSize: 11.5, fontFamily: 'inherit' }}>
               فعال
             </button>
           </div>
         ) : (
           <button onClick={() => setShowForm(true)}
-            style={{ padding: '5px 12px', borderRadius: 7, background: '#22C55E', color: '#000', border: 'none', cursor: 'pointer', fontSize: 11.5, fontFamily: 'inherit', fontWeight: 800 }}>
+            style={{ padding: '5px 12px', borderRadius: 7, background: 'var(--green)', color: '#000', border: 'none', cursor: 'pointer', fontSize: 11.5, fontFamily: 'inherit', fontWeight: 800 }}>
             ✓ راه‌اندازی
           </button>
         )}
@@ -62,7 +62,7 @@ export default function AdminHostingActions({ hostingId, currentStatus }: Props)
   if (currentStatus === 'active') {
     return (
       <button onClick={() => updateStatus('suspended')} disabled={loading}
-        className="admin-btn-sm" style={{ color: '#EF4444', borderColor: 'rgba(239,68,68,0.2)' }}>
+        className="admin-btn-sm" style={{ color: 'var(--red)', borderColor: 'rgba(239,68,68,0.2)' }}>
         تعلیق
       </button>
     )

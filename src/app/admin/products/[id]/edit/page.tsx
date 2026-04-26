@@ -25,14 +25,14 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
           <div className="admin-card-title">ویرایش: {product.title}</div>
           <Link href="/admin/products" className="admin-card-link">← بازگشت</Link>
         </div>
-        <div style={{ padding: '40px 20px', textAlign: 'center', color: '#505062', fontSize: 13 }}>
+        <div style={{ padding: '40px 20px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>
           فرم ویرایش در مرحله بعد تکمیل می‌شود.
           <br />
-          <div style={{ marginTop: 12, padding: '12px 16px', background: '#141420', borderRadius: 10, fontSize: 12, textAlign: 'right', direction: 'rtl' }}>
-            <div><strong style={{ color: '#C8A96E' }}>عنوان:</strong> {product.title}</div>
-            <div><strong style={{ color: '#C8A96E' }}>نوع:</strong> {product.type}</div>
-            <div><strong style={{ color: '#C8A96E' }}>قیمت:</strong> {product.price.toLocaleString('fa')} ت</div>
-            <div><strong style={{ color: '#C8A96E' }}>وضعیت:</strong> {product.isActive ? 'فعال' : 'غیرفعال'}</div>
+          <div style={{ marginTop: 12, padding: '12px 16px', background: 'var(--b2)', borderRadius: 10, fontSize: 12, textAlign: 'right', direction: 'rtl' }}>
+            <div><strong style={{ color: 'var(--gold)' }}>عنوان:</strong> {product.title}</div>
+            <div><strong style={{ color: 'var(--gold)' }}>نوع:</strong> {product.type}</div>
+            <div><strong style={{ color: 'var(--gold)' }}>قیمت:</strong> {product.price.toLocaleString('fa')} ت</div>
+            <div><strong style={{ color: 'var(--gold)' }}>وضعیت:</strong> {product.isActive ? 'فعال' : 'غیرفعال'}</div>
           </div>
         </div>
       </div>

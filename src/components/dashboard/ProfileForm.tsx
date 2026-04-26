@@ -82,7 +82,7 @@ export default function ProfileForm({ user }: Props) {
           <div className="db-form-row">
             <label className="db-label">شماره موبایل</label>
             <input className="db-input" value={form.mobile} disabled style={{ opacity: 0.5, cursor: 'not-allowed' }} />
-            <div style={{ fontSize: 11, color: '#505062', marginTop: 5 }}>شماره موبایل قابل تغییر نیست</div>
+            <div style={{ fontSize: 11, color: 'var(--t3)', marginTop: 5 }}>شماره موبایل قابل تغییر نیست</div>
           </div>
         </div>
       </div>
@@ -91,16 +91,16 @@ export default function ProfileForm({ user }: Props) {
       <div className="db-card" style={{ marginBottom: 16 }}>
         <div className="db-card-head">
           <div className="db-card-title">اطلاعات حقوقی</div>
-          <div style={{ fontSize: 12, color: '#505062' }}>برای دریافت فاکتور رسمی</div>
+          <div style={{ fontSize: 12, color: 'var(--t3)' }}>برای دریافت فاکتور رسمی</div>
         </div>
         <div style={{ padding: '20px' }}>
           <div className="db-form-row">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', background: '#141420', border: '1.5px solid rgba(255,255,255,0.06)', borderRadius: 10, cursor: 'pointer' }}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', background: 'var(--b2)', border: '1.5px solid rgba(255,255,255,0.06)', borderRadius: 10, cursor: 'pointer' }}
               onClick={() => setForm(f => ({ ...f, isLegal: !f.isLegal }))}>
-              <div style={{ width: 20, height: 20, borderRadius: 5, border: '2px solid', borderColor: form.isLegal ? '#C8A96E' : 'rgba(255,255,255,0.2)', background: form.isLegal ? '#C8A96E' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <div style={{ width: 20, height: 20, borderRadius: 5, border: '2px solid', borderColor: form.isLegal ? 'var(--gold)' : 'rgba(255,255,255,0.2)', background: form.isLegal ? 'var(--gold)' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 {form.isLegal && <span style={{ color: '#000', fontSize: 12, fontWeight: 900 }}>✓</span>}
               </div>
-              <span style={{ fontSize: 13, color: '#EEEEF2' }}>شخص حقوقی هستم (شرکت/کسب‌وکار)</span>
+              <span style={{ fontSize: 13, color: 'var(--t)' }}>شخص حقوقی هستم (شرکت/کسب‌وکار)</span>
             </div>
           </div>
           {form.isLegal && (
@@ -128,17 +128,17 @@ export default function ProfileForm({ user }: Props) {
       <div className="db-card" style={{ marginBottom: 20 }}>
         <div className="db-card-head">
           <div className="db-card-title">تنظیمات ایمیل</div>
-          <div style={{ fontSize: 12, color: '#505062' }}>پیامک همیشه ارسال می‌شود</div>
+          <div style={{ fontSize: 12, color: 'var(--t3)' }}>پیامک همیشه ارسال می‌شود</div>
         </div>
         <div style={{ padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
           {Object.entries(notifLabels).map(([key, label]) => (
             <div key={key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 13, color: '#8888A0' }}>{label}</span>
+              <span style={{ fontSize: 13, color: 'var(--t2)' }}>{label}</span>
               <div
                 onClick={() => setForm(f => ({ ...f, emailNotifications: { ...f.emailNotifications, [key]: !f.emailNotifications[key] } }))}
                 style={{
                   width: 44, height: 24, borderRadius: 100, cursor: 'pointer', transition: 'background 0.2s', position: 'relative',
-                  background: form.emailNotifications[key] ? '#C8A96E' : '#1C1C2A',
+                  background: form.emailNotifications[key] ? 'var(--gold)' : 'var(--b3)',
                 }}
               >
                 <div style={{

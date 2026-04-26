@@ -16,7 +16,7 @@ export default async function AdminPlaceholderPage() {
         <div className="admin-card-head">
           <div className="admin-card-title">در حال توسعه...</div>
         </div>
-        <div style={{ padding: '40px 20px', textAlign: 'center', color: '#505062', fontSize: 13 }}>
+        <div style={{ padding: '40px 20px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>
           این بخش در مراحل بعدی تکمیل می‌شود.
         </div>
       </div>

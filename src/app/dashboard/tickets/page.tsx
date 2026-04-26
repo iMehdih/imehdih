@@ -51,7 +51,7 @@ export default async function CustomerTicketsPage() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 13, color: '#505062', marginTop: 4 }}>
+          <div style={{ fontSize: 13, color: 'var(--t3)', marginTop: 4 }}>
             {openCount} تیکت باز · {tickets.length} تیکت کل
           </div>
         </div>
@@ -93,11 +93,11 @@ export default async function CustomerTicketsPage() {
                       <td className="db-table-mono" style={{ fontSize: 11.5 }}>{ticket.ticketNumber}</td>
                       <td style={{ fontWeight: 700, maxWidth: 300 }}>
                         <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {isOpen && <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: '#EF4444', marginLeft: 6, verticalAlign: 'middle' }}></span>}
+                          {isOpen && <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: 'var(--red)', marginLeft: 6, verticalAlign: 'middle' }}></span>}
                           {ticket.title}
                         </div>
                         {ticket.relatedDomain && (
-                          <div style={{ fontSize: 10.5, color: '#505062', marginTop: 2 }}>{ticket.relatedDomain}</div>
+                          <div style={{ fontSize: 10.5, color: 'var(--t3)', marginTop: 2 }}>{ticket.relatedDomain}</div>
                         )}
                       </td>
                       <td style={{ fontSize: 11.5 }}>{deptLabels[ticket.department] || ticket.department}</td>

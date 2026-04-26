@@ -49,7 +49,7 @@ export default async function ProductDetailPage({
         <span>{p.title}</span>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 32, alignItems: 'start' }}>
+      <div className="product-detail-grid">
         {/* Left: Detail */}
         <div>
           {/* Thumbnail */}
@@ -85,7 +85,7 @@ export default async function ProductDetailPage({
               <h1 style={{ fontSize: 20, fontWeight: 900, lineHeight: 1.35, marginBottom: 10 }}>{p.title}</h1>
               {p.rating > 0 && (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12.5, color: 'var(--t2)' }}>
-                  <span style={{ color: '#F59E0B' }}>{'★'.repeat(Math.round(p.rating))}</span>
+                  <span style={{ color: 'var(--yellow)' }}>{'★'.repeat(Math.round(p.rating))}</span>
                   <span>{p.rating} ({p.reviewCount} نظر)</span>
                 </div>
               )}
@@ -94,7 +94,7 @@ export default async function ProductDetailPage({
             {/* Price */}
             <div style={{ padding: '18px 22px', borderBottom: '1px solid var(--bd)' }}>
               {isFree ? (
-                <div style={{ fontSize: 28, fontWeight: 900, color: '#22C55E' }}>رایگان</div>
+                <div style={{ fontSize: 28, fontWeight: 900, color: 'var(--green)' }}>رایگان</div>
               ) : (
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
@@ -102,7 +102,7 @@ export default async function ProductDetailPage({
                       {price.toLocaleString('fa')} ت
                     </span>
                     {hasDiscount && (
-                      <span style={{ background: '#EF4444', color: '#fff', fontSize: 11, fontWeight: 900, padding: '3px 9px', borderRadius: 100 }}>
+                      <span style={{ background: 'var(--red)', color: '#fff', fontSize: 11, fontWeight: 900, padding: '3px 9px', borderRadius: 100 }}>
                         {discountPct}٪ تخفیف
                       </span>
                     )}
@@ -165,7 +165,7 @@ export default async function ProductDetailPage({
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 4 }}>
                 {['ضمانت بازگشت وجه', 'پشتیبانی رسمی', 'آپدیت رایگان'].map(item => (
                   <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: 'var(--t2)' }}>
-                    <span style={{ color: '#22C55E', fontWeight: 900 }}>✓</span>
+                    <span style={{ color: 'var(--green)', fontWeight: 900 }}>✓</span>
                     {item}
                   </div>
                 ))}

@@ -74,17 +74,17 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
                 <tr key={p._id.toString()}>
                   <td>
                     <div style={{fontWeight:700}}>{p.title}</div>
-                    <div style={{fontSize:10.5,color:'#505062'}}>{p.slug}</div>
+                    <div style={{fontSize:10.5,color:'var(--t3)'}}>{p.slug}</div>
                   </td>
                   <td><span className="admin-badge admin-badge-gold">{typeLabels[p.type] || p.type}</span></td>
                   <td>
                     {p.salePrice ? (
                       <div>
-                        <div style={{color:'#C8A96E',fontWeight:800}}>{p.salePrice.toLocaleString('fa')}</div>
-                        <div style={{fontSize:10.5,color:'#505062',textDecoration:'line-through'}}>{p.price.toLocaleString('fa')}</div>
+                        <div style={{color:'var(--gold)',fontWeight:800}}>{p.salePrice.toLocaleString('fa')}</div>
+                        <div style={{fontSize:10.5,color:'var(--t3)',textDecoration:'line-through'}}>{p.price.toLocaleString('fa')}</div>
                       </div>
                     ) : (
-                      <div style={{color:'#C8A96E',fontWeight:800}}>
+                      <div style={{color:'var(--gold)',fontWeight:800}}>
                         {p.price === 0 ? 'رایگان' : p.price.toLocaleString('fa')}
                       </div>
                     )}
@@ -115,9 +115,9 @@ export default async function AdminProductsPage({ searchParams }: { searchParams
               <a key={p} href={`/admin/products?${type?`type=${type}&`:''}page=${p}`}
                 style={{
                   padding:'5px 10px',borderRadius:7,fontSize:12,fontWeight:700,textDecoration:'none',
-                  background: p === page ? '#C8A96E' : '#141420',
-                  color: p === page ? '#000' : '#8888A0',
-                  border: `1px solid ${p === page ? '#C8A96E' : 'rgba(255,255,255,0.06)'}`,
+                  background: p === page ? 'var(--gold)' : 'var(--b2)',
+                  color: p === page ? '#000' : 'var(--t2)',
+                  border: `1px solid ${p === page ? 'var(--gold)' : 'rgba(255,255,255,0.06)'}`,
                 }}>
                 {p}
               </a>

@@ -53,7 +53,7 @@ export default async function AdminCustomersPage({ searchParams }: { searchParam
           <input className="admin-input" name="search" defaultValue={search}
             placeholder="جستجو با نام یا موبایل..." style={{maxWidth:320}} />
           <button type="submit" className="admin-btn admin-btn-gold">جستجو</button>
-          {search && <Link href="/admin/customers" className="admin-btn" style={{background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'#8888A0',textDecoration:'none',display:'flex',alignItems:'center'}}>پاک کردن</Link>}
+          {search && <Link href="/admin/customers" className="admin-btn" style={{background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'var(--t2)',textDecoration:'none',display:'flex',alignItems:'center'}}>پاک کردن</Link>}
         </div>
       </form>
 
@@ -83,7 +83,7 @@ export default async function AdminCustomersPage({ searchParams }: { searchParam
                   <tr key={c._id.toString()}>
                     <td>
                       <div style={{display:'flex',alignItems:'center',gap:9}}>
-                        <div style={{width:32,height:32,borderRadius:'50%',background:'linear-gradient(135deg,#C8A96E,#A8843A)',display:'flex',alignItems:'center',justifyContent:'center',color:'#000',fontWeight:900,fontSize:13,flexShrink:0}}>
+                        <div style={{width:32,height:32,borderRadius:'50%',background:'linear-gradient(135deg,var(--gold),var(--gold3))',display:'flex',alignItems:'center',justifyContent:'center',color:'#000',fontWeight:900,fontSize:13,flexShrink:0}}>
                           {c.firstName ? c.firstName[0] : c.mobile[2]}
                         </div>
                         <div>
@@ -91,28 +91,28 @@ export default async function AdminCustomersPage({ searchParams }: { searchParam
                             {c.firstName ? `${c.firstName} ${c.lastName}` : 'تکمیل نشده'}
                             {c.isVIP && <span className="admin-badge admin-badge-gold" style={{marginRight:5,fontSize:9}}>VIP</span>}
                           </div>
-                          <div style={{fontSize:10.5,color:'#505062'}}>{c.email || '—'}</div>
+                          <div style={{fontSize:10.5,color:'var(--t3)'}}>{c.email || '—'}</div>
                         </div>
                       </div>
                     </td>
                     <td className="admin-table-mono" style={{fontSize:12}}>{c.mobile}</td>
                     <td>{stats.count}</td>
-                    <td style={{color:'#C8A96E',fontWeight:700}}>
+                    <td style={{color:'var(--gold)',fontWeight:700}}>
                       {stats.total > 0 ? `${(stats.total/1000).toFixed(0)}ک` : '—'}
                     </td>
                     <td>
                       <div style={{display:'flex',alignItems:'center',gap:5}}>
-                        <div style={{width:40,height:4,background:'#1C1C2A',borderRadius:100,overflow:'hidden'}}>
-                          <div style={{width:`${c.customerScore}%`,height:'100%',background:'#C8A96E',borderRadius:100}}/>
+                        <div style={{width:40,height:4,background:'var(--b3)',borderRadius:100,overflow:'hidden'}}>
+                          <div style={{width:`${c.customerScore}%`,height:'100%',background:'var(--gold)',borderRadius:100}}/>
                         </div>
-                        <span style={{fontSize:10.5,color:'#505062'}}>{c.customerScore}</span>
+                        <span style={{fontSize:10.5,color:'var(--t3)'}}>{c.customerScore}</span>
                       </div>
                     </td>
-                    <td style={{fontSize:11.5,color:'#505062'}}>{lastSeen}</td>
+                    <td style={{fontSize:11.5,color:'var(--t3)'}}>{lastSeen}</td>
                     <td>
                       <div style={{display:'flex',alignItems:'center',gap:5}}>
-                        <div style={{width:7,height:7,borderRadius:'50%',background:isOnline?'#22C55E':'#505062'}}/>
-                        <span style={{fontSize:11,color:isOnline?'#22C55E':'#505062'}}>{isOnline?'آنلاین':'آفلاین'}</span>
+                        <div style={{width:7,height:7,borderRadius:'50%',background:isOnline?'var(--green)':'var(--t3)'}}/>
+                        <span style={{fontSize:11,color:isOnline?'var(--green)':'var(--t3)'}}>{isOnline?'آنلاین':'آفلاین'}</span>
                       </div>
                     </td>
                   </tr>

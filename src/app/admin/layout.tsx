@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/auth/jwt'
 import AdminSidebar from '@/components/admin/AdminSidebar'
 import AdminTopbar from '@/components/admin/AdminTopbar'
+import MobileMenu from '@/components/ui/MobileMenu'
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies()
@@ -19,6 +20,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <AdminTopbar adminName="مهدی حاتم‌پور" />
         <main className="admin-content">{children}</main>
       </div>
+      <MobileMenu />
     </div>
   )
 }

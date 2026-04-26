@@ -75,7 +75,7 @@ export default function AdminNotificationsPage() {
                   padding: '11px 14px', borderRadius: 10, fontSize: 13,
                   background: result.type === 'success' ? 'rgba(34,197,94,0.08)' : 'rgba(239,68,68,0.08)',
                   border: `1px solid ${result.type === 'success' ? 'rgba(34,197,94,0.2)' : 'rgba(239,68,68,0.2)'}`,
-                  color: result.type === 'success' ? '#22C55E' : '#EF4444',
+                  color: result.type === 'success' ? 'var(--green)' : 'var(--red)',
                 }}>
                   {result.text}
                 </div>
@@ -110,9 +110,9 @@ export default function AdminNotificationsPage() {
                       style={{
                         padding: '7px 14px', borderRadius: 8, fontSize: 12.5, fontWeight: 700,
                         cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.15s',
-                        background: form.targetRole === opt.val && !form.targetProductType ? '#C8A96E' : '#141420',
-                        color: form.targetRole === opt.val && !form.targetProductType ? '#000' : '#8888A0',
-                        border: `1px solid ${form.targetRole === opt.val && !form.targetProductType ? '#C8A96E' : 'rgba(255,255,255,0.06)'}`,
+                        background: form.targetRole === opt.val && !form.targetProductType ? 'var(--gold)' : 'var(--b2)',
+                        color: form.targetRole === opt.val && !form.targetProductType ? '#000' : 'var(--t2)',
+                        border: `1px solid ${form.targetRole === opt.val && !form.targetProductType ? 'var(--gold)' : 'rgba(255,255,255,0.06)'}`,
                       }}>
                       {opt.label}
                     </button>
@@ -131,7 +131,7 @@ export default function AdminNotificationsPage() {
                     ))}
                   </select>
                   {form.targetProductType && (
-                    <div style={{ fontSize: 11.5, color: '#C8A96E', marginTop: 5 }}>
+                    <div style={{ fontSize: 11.5, color: 'var(--gold)', marginTop: 5 }}>
                       ✓ فقط خریداران {productTypeLabels[form.targetProductType]} اعلان می‌گیرند
                     </div>
                   )}
@@ -139,10 +139,10 @@ export default function AdminNotificationsPage() {
               </div>
 
               {/* SMS */}
-              <div style={{ padding: '12px 14px', background: '#141420', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ padding: '12px 14px', background: 'var(--b2)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>ارسال پیامک همراه</div>
-                  <div style={{ fontSize: 11.5, color: '#505062' }}>
+                  <div style={{ fontSize: 11.5, color: 'var(--t3)' }}>
                     پیامک «پیام جدید در پنل» به موبایل گیرندگان ارسال می‌شود
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default function AdminNotificationsPage() {
                   style={{
                     width: 44, height: 24, borderRadius: 100, cursor: 'pointer',
                     transition: 'background 0.2s', position: 'relative',
-                    background: form.sendSMS ? '#C8A96E' : '#1C1C2A',
+                    background: form.sendSMS ? 'var(--gold)' : 'var(--b3)',
                   }}>
                   <div style={{
                     position: 'absolute', top: 3, width: 18, height: 18,
@@ -162,7 +162,7 @@ export default function AdminNotificationsPage() {
               </div>
 
               {form.sendSMS && (
-                <div style={{ padding: '10px 12px', background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 8, fontSize: 12, color: '#F59E0B' }}>
+                <div style={{ padding: '10px 12px', background: 'rgba(245,158,11,0.07)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 8, fontSize: 12, color: 'var(--yellow)' }}>
                   ⚠ ارسال پیامک هزینه دارد. مطمئن شوید API کاوه‌نگار در .env.local تنظیم شده.
                 </div>
               )}
@@ -182,9 +182,9 @@ export default function AdminNotificationsPage() {
             <div className="admin-card-title">تاریخچه ارسال‌ها</div>
           </div>
           {historyLoading ? (
-            <div style={{ padding: '28px', textAlign: 'center', color: '#505062', fontSize: 13 }}>بارگذاری...</div>
+            <div style={{ padding: '28px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>بارگذاری...</div>
           ) : history.length === 0 ? (
-            <div style={{ padding: '28px', textAlign: 'center', color: '#505062', fontSize: 12 }}>
+            <div style={{ padding: '28px', textAlign: 'center', color: 'var(--t3)', fontSize: 12 }}>
               هنوز اعلانی ارسال نشده
             </div>
           ) : (
@@ -194,10 +194,10 @@ export default function AdminNotificationsPage() {
                   <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>
                     {log.after?.title}
                   </div>
-                  <div style={{ display: 'flex', gap: 10, fontSize: 11, color: '#505062', flexWrap: 'wrap' }}>
-                    <span style={{ color: '#22C55E', fontWeight: 700 }}>{log.after?.recipientCount} گیرنده</span>
+                  <div style={{ display: 'flex', gap: 10, fontSize: 11, color: 'var(--t3)', flexWrap: 'wrap' }}>
+                    <span style={{ color: 'var(--green)', fontWeight: 700 }}>{log.after?.recipientCount} گیرنده</span>
                     {log.after?.smsSent > 0 && (
-                      <span style={{ color: '#60A5FA' }}>{log.after.smsSent} پیامک</span>
+                      <span style={{ color: 'var(--blue)' }}>{log.after.smsSent} پیامک</span>
                     )}
                     <span>{new Date(log.createdAt).toLocaleString('fa-IR')}</span>
                   </div>

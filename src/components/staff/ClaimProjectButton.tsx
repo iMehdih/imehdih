@@ -25,7 +25,7 @@ export default function ClaimProjectButton({ projectId }: { projectId: string })
     setLoading(false)
   }
 
-  if (claimed) return <span style={{ fontSize: 12, color: '#22C55E', fontWeight: 800 }}>✓ دریافت شد</span>
+  if (claimed) return <span style={{ fontSize: 12, color: 'var(--green)', fontWeight: 800 }}>✓ دریافت شد</span>
 
   return (
     <button onClick={handleClaim} disabled={loading} className="db-btn db-btn-gold" style={{ opacity: loading ? 0.6 : 1, fontSize: 13 }}>

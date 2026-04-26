@@ -119,18 +119,18 @@ export default function AdminTicketActions({
         {/* Assign */}
         {!isAssigned && !isClosed && (
           <div style={{ padding: '10px 14px', background: 'rgba(245,158,11,0.06)', border: '1px solid rgba(245,158,11,0.18)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-            <span style={{ fontSize: 12.5, color: '#F59E0B' }}>این تیکت هنوز به کسی assign نشده</span>
+            <span style={{ fontSize: 12.5, color: 'var(--yellow)' }}>این تیکت هنوز به کسی assign نشده</span>
             <button
               onClick={handleAssign}
               disabled={assignLoading}
-              style={{ padding: '6px 14px', background: '#F59E0B', color: '#000', border: 'none', borderRadius: 7, fontSize: 12, fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit' }}>
+              style={{ padding: '6px 14px', background: 'var(--yellow)', color: '#000', border: 'none', borderRadius: 7, fontSize: 12, fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit' }}>
               {assignLoading ? 'در حال...' : 'قبول تیکت'}
             </button>
           </div>
         )}
 
         {error && <div className="admin-alert admin-alert-error">{error}</div>}
-        {success && <div style={{ padding: '10px 14px', background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: 8, fontSize: 12.5, color: '#22C55E' }}>{success}</div>}
+        {success && <div style={{ padding: '10px 14px', background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)', borderRadius: 8, fontSize: 12.5, color: 'var(--green)' }}>{success}</div>}
 
         {!isClosed && (
           <>
@@ -143,9 +143,9 @@ export default function AdminTicketActions({
                     onClick={() => handleStatusChange(s.val)}
                     style={{
                       padding: '5px 12px', borderRadius: 7, fontSize: 11.5, fontWeight: 700,
-                      background: newStatus === s.val ? '#C8A96E' : '#141420',
-                      color: newStatus === s.val ? '#000' : '#8888A0',
-                      border: `1px solid ${newStatus === s.val ? '#C8A96E' : 'rgba(255,255,255,0.06)'}`,
+                      background: newStatus === s.val ? 'var(--gold)' : 'var(--b2)',
+                      color: newStatus === s.val ? '#000' : 'var(--t2)',
+                      border: `1px solid ${newStatus === s.val ? 'var(--gold)' : 'rgba(255,255,255,0.06)'}`,
                       cursor: 'pointer', fontFamily: 'inherit', transition: 'all 0.15s',
                     }}>
                     {s.label}

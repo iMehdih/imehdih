@@ -73,13 +73,13 @@ export default async function TicketDetailPage({
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
               <span className={`db-badge db-badge-${st.cls}`}>{st.label}</span>
-              <span style={{ fontSize: 11.5, color: '#505062' }}>#{t.ticketNumber}</span>
+              <span style={{ fontSize: 11.5, color: 'var(--t3)' }}>#{t.ticketNumber}</span>
             </div>
             <div style={{ fontSize: 18, fontWeight: 900, marginBottom: 8 }}>{t.title}</div>
-            <div style={{ display: 'flex', gap: 16, fontSize: 12, color: '#505062', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 16, fontSize: 12, color: 'var(--t3)', flexWrap: 'wrap' }}>
               <span>تاریخ ثبت: {new Date(t.createdAt).toLocaleDateString('fa-IR')}</span>
               {t.assignedTo && <span>کارشناس: {t.assignedTo.firstName} {t.assignedTo.lastName}</span>}
-              {t.relatedDomain && <span>دامنه: <strong style={{ color: '#EEEEF2' }}>{t.relatedDomain}</strong></span>}
+              {t.relatedDomain && <span>دامنه: <strong style={{ color: 'var(--t)' }}>{t.relatedDomain}</strong></span>}
             </div>
           </div>
           <Link href="/dashboard/tickets" className="db-btn db-btn-outline" style={{ fontSize: 12, padding: '7px 14px' }}>
@@ -88,7 +88,7 @@ export default async function TicketDetailPage({
         </div>
 
         {isClosed && (
-          <div style={{ marginTop: 14, padding: '10px 14px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, fontSize: 12.5, color: '#505062', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ marginTop: 14, padding: '10px 14px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, fontSize: 12.5, color: 'var(--t3)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span>این تیکت بسته شده. برای پیگیری مجدد تیکت جدید بزنید.</span>
             <Link href="/dashboard/tickets/new" className="db-btn db-btn-gold" style={{ fontSize: 11, padding: '6px 14px' }}>
               تیکت جدید

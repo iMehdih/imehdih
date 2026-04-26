@@ -28,7 +28,7 @@ function ProductCard({ product }: { product: any }) {
               <span className="filter-tab active" style={{ fontSize: 9.5, padding: '3px 8px' }}>ویژه</span>
             )}
             {hasDiscount && (
-              <span style={{ background: '#EF4444', color: '#fff', fontSize: 9.5, fontWeight: 900, padding: '3px 8px', borderRadius: 100 }}>
+              <span style={{ background: 'var(--red)', color: '#fff', fontSize: 9.5, fontWeight: 900, padding: '3px 8px', borderRadius: 100 }}>
                 {Math.round((1 - product.salePrice / product.price) * 100)}٪-
               </span>
             )}

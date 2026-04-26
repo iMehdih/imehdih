@@ -105,8 +105,8 @@ export default async function AdminDashboardPage() {
         <div className="admin-stat-card warn">
           <div className="admin-stat-icon-wrap warn">✉</div>
           <div className="admin-stat-label">تیکت باز</div>
-          <div className="admin-stat-val" style={{color:'#EF4444'}}>{openTickets}</div>
-          <div className="admin-stat-trend down" style={{color:'#EF4444'}}>● نیاز به رسیدگی</div>
+          <div className="admin-stat-val" style={{color:'var(--red)'}}>{openTickets}</div>
+          <div className="admin-stat-trend down" style={{color:'var(--red)'}}>● نیاز به رسیدگی</div>
         </div>
       </div>
 
@@ -118,8 +118,8 @@ export default async function AdminDashboardPage() {
             <div className="admin-card-head">
               <div className="admin-card-title">درآمد ۳۰ روز اخیر</div>
               <div style={{ display: 'flex', gap: 14, fontSize: 11 }}>
-                <span style={{ color: '#C8A96E', fontWeight: 700 }}>● درآمد</span>
-                <span style={{ color: '#22C55E', fontWeight: 700 }}>● سود</span>
+                <span style={{ color: 'var(--gold)', fontWeight: 700 }}>● درآمد</span>
+                <span style={{ color: 'var(--green)', fontWeight: 700 }}>● سود</span>
               </div>
             </div>
             <div style={{ padding: '16px 18px' }}>
@@ -138,7 +138,7 @@ export default async function AdminDashboardPage() {
                   </div>
                 ))}
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 10.5, color: '#505062' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontSize: 10.5, color: 'var(--t3)' }}>
                 <span>۱ فروردین</span><span>۱۰ فروردین</span><span>۲۰ فروردین</span><span>امروز</span>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default async function AdminDashboardPage() {
               <Link href="/admin/orders" className="admin-card-link">همه ←</Link>
             </div>
             {(recentOrders as any[]).length === 0 ? (
-              <div style={{ padding: '28px', textAlign: 'center', color: '#505062', fontSize: 13 }}>سفارشی وجود ندارد</div>
+              <div style={{ padding: '28px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>سفارشی وجود ندارد</div>
             ) : (
               <div className="admin-table-wrap">
                 <table className="admin-table">
@@ -164,7 +164,7 @@ export default async function AdminDashboardPage() {
                         <tr key={o._id.toString()}>
                           <td style={{ fontWeight: 700 }}>{u?.firstName ? `${u.firstName} ${u.lastName?.charAt(0)}.` : u?.mobile}</td>
                           <td style={{ fontSize: 12 }}>{o.items[0]?.title}</td>
-                          <td style={{ color: '#C8A96E', fontWeight: 800 }}>{(o.finalAmount/1000).toFixed(0)}ک</td>
+                          <td style={{ color: 'var(--gold)', fontWeight: 800 }}>{(o.finalAmount/1000).toFixed(0)}ک</td>
                           <td><span className={`admin-badge admin-badge-${st.cls}`}>{st.label}</span></td>
                         </tr>
                       )
@@ -186,17 +186,17 @@ export default async function AdminDashboardPage() {
             </div>
             <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               {(staffList as any[]).length === 0 ? (
-                <div style={{ fontSize: 12, color: '#505062', padding: '8px 0', textAlign: 'center' }}>هنوز کارمندی اضافه نشده</div>
+                <div style={{ fontSize: 12, color: 'var(--t3)', padding: '8px 0', textAlign: 'center' }}>هنوز کارمندی اضافه نشده</div>
               ) : (staffList as any[]).map(s => {
                 const isOnline = s.lastSeen && new Date(s.lastSeen) > fiveMinAgo
                 return (
                   <div key={s._id.toString()} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,#C8A96E,#A8843A)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 900, fontSize: 13, flexShrink: 0 }}>
+                    <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg,var(--gold),var(--gold3))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000', fontWeight: 900, fontSize: 13, flexShrink: 0 }}>
                       {s.firstName?.[0]}
                     </div>
                     <div style={{ flex: 1 }}>
                       <div style={{ fontSize: 13, fontWeight: 700 }}>{s.firstName} {s.lastName}</div>
-                      <div style={{ fontSize: 10.5, color: '#505062' }}>{isOnline ? '● آنلاین' : `آخرین بازدید: ${s.lastSeen ? new Date(s.lastSeen).toLocaleDateString('fa-IR') : '—'}`}</div>
+                      <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>{isOnline ? '● آنلاین' : `آخرین بازدید: ${s.lastSeen ? new Date(s.lastSeen).toLocaleDateString('fa-IR') : '—'}`}</div>
                     </div>
                     <span className={`admin-badge ${isOnline ? 'admin-badge-green' : 'admin-badge-gray'}`}>{isOnline ? 'آنلاین' : 'آفلاین'}</span>
                   </div>
@@ -211,7 +211,7 @@ export default async function AdminDashboardPage() {
               <div className="admin-card-title">مشتریان آنلاین</div>
             </div>
             <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <div style={{ fontSize: 12, color: '#505062', textAlign: 'center', padding: '8px 0' }}>
+              <div style={{ fontSize: 12, color: 'var(--t3)', textAlign: 'center', padding: '8px 0' }}>
                 آخرین بازدیدها در حال توسعه...
               </div>
             </div>
@@ -224,7 +224,7 @@ export default async function AdminDashboardPage() {
               <Link href="/admin/tickets" className="admin-card-link">همه ←</Link>
             </div>
             {(recentTickets as any[]).length === 0 ? (
-              <div style={{ padding: '20px 16px', fontSize: 12, color: '#505062', textAlign: 'center' }}>تیکت باز وجود ندارد ✓</div>
+              <div style={{ padding: '20px 16px', fontSize: 12, color: 'var(--t3)', textAlign: 'center' }}>تیکت باز وجود ندارد ✓</div>
             ) : (recentTickets as any[]).map(t => {
               const st = ticketStatusMap[t.status] || { label: t.status, cls: 'gray' }
               const u = t.userId
@@ -232,7 +232,7 @@ export default async function AdminDashboardPage() {
                 <div key={t._id.toString()} className="admin-ticket-item">
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>{t.title}</div>
-                    <div style={{ fontSize: 10.5, color: '#505062' }}>
+                    <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>
                       {u?.firstName ? `${u.firstName} ${u.lastName}` : '—'}
                       {' · '}{new Date(t.createdAt).toLocaleDateString('fa-IR')}
                     </div>
@@ -259,11 +259,11 @@ export default async function AdminDashboardPage() {
             ].map(item => (
               <div key={item.label}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
-                  <span style={{ fontSize: 12.5, color: '#8888A0' }}>{item.label}</span>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: '#C8A96E' }}>{(item.val/1000000).toFixed(1)}م</span>
+                  <span style={{ fontSize: 12.5, color: 'var(--t2)' }}>{item.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--gold)' }}>{(item.val/1000000).toFixed(1)}م</span>
                 </div>
-                <div style={{ background: '#1C1C2A', borderRadius: 100, height: 5, overflow: 'hidden' }}>
-                  <div style={{ width: `${(item.val/item.max)*100}%`, height: '100%', borderRadius: 100, background: 'linear-gradient(90deg,#A8843A,#C8A96E)' }} />
+                <div style={{ background: 'var(--b3)', borderRadius: 100, height: 5, overflow: 'hidden' }}>
+                  <div style={{ width: `${(item.val/item.max)*100}%`, height: '100%', borderRadius: 100, background: 'linear-gradient(90deg,var(--gold3),var(--gold))' }} />
                 </div>
               </div>
             ))}
@@ -282,13 +282,13 @@ export default async function AdminDashboardPage() {
               { label: 'سایر', val: '۸۰۰ک' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: 12.5, color: '#8888A0' }}>{item.label}</span>
-                <span style={{ fontSize: 13, fontWeight: 800, color: '#EF4444' }}>{item.val}</span>
+                <span style={{ fontSize: 12.5, color: 'var(--t2)' }}>{item.label}</span>
+                <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--red)' }}>{item.val}</span>
               </div>
             ))}
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: 4, paddingTop: 10, display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 13, fontWeight: 800, color: '#EEEEF2' }}>جمع هزینه</span>
-              <span style={{ fontSize: 14, fontWeight: 900, color: '#EF4444' }}>۷.۲م</span>
+              <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--t)' }}>جمع هزینه</span>
+              <span style={{ fontSize: 14, fontWeight: 900, color: 'var(--red)' }}>۷.۲م</span>
             </div>
           </div>
         </div>
@@ -301,15 +301,15 @@ export default async function AdminDashboardPage() {
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             {(staffList as any[]).length === 0 ? (
-              <div style={{ fontSize: 12, color: '#505062', textAlign: 'center', padding: '8px 0' }}>کارمندی وجود ندارد</div>
+              <div style={{ fontSize: 12, color: 'var(--t3)', textAlign: 'center', padding: '8px 0' }}>کارمندی وجود ندارد</div>
             ) : (staffList as any[]).map(s => (
               <div key={s._id.toString()} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
                 <div>
                   <div style={{ fontSize: 12.5, fontWeight: 700 }}>{s.firstName} {s.lastName}</div>
-                  <div style={{ fontSize: 10.5, color: '#505062' }}>موجودی</div>
+                  <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>موجودی</div>
                 </div>
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: 13, fontWeight: 900, color: '#C8A96E' }}>
+                  <div style={{ fontSize: 13, fontWeight: 900, color: 'var(--gold)' }}>
                     {((s.walletBalance || 0)/1000000).toFixed(1)}م
                   </div>
                 </div>

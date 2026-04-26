@@ -160,11 +160,11 @@ export default function TemplateBuilder({ products, initialData }: Props) {
             <div className="admin-card-head"><div className="admin-card-title">تنظیمات اصلی</div></div>
             <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div>
-                <label className="admin-label">عنوان Template <span style={{ color: '#EF4444' }}>*</span></label>
+                <label className="admin-label">عنوان Template <span style={{ color: 'var(--red)' }}>*</span></label>
                 <input className="admin-input" value={title} onChange={e => setTitle(e.target.value)} placeholder="مثال: بهینه‌سازی سرعت سایت" />
               </div>
               <div>
-                <label className="admin-label">محصول مرتبط <span style={{ color: '#EF4444' }}>*</span></label>
+                <label className="admin-label">محصول مرتبط <span style={{ color: 'var(--red)' }}>*</span></label>
                 <select className="admin-input" value={productId} onChange={e => setProductId(e.target.value)}>
                   <option value="">انتخاب محصول...</option>
                   {products.map(p => (
@@ -173,8 +173,8 @@ export default function TemplateBuilder({ products, initialData }: Props) {
                 </select>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontSize: 13, color: '#8888A0' }}>Template فعال باشد</span>
-                <div onClick={() => setIsActive(v => !v)} style={{ width: 44, height: 24, borderRadius: 100, cursor: 'pointer', transition: 'background 0.2s', position: 'relative', background: isActive ? '#C8A96E' : '#1C1C2A' }}>
+                <span style={{ fontSize: 13, color: 'var(--t2)' }}>Template فعال باشد</span>
+                <div onClick={() => setIsActive(v => !v)} style={{ width: 44, height: 24, borderRadius: 100, cursor: 'pointer', transition: 'background 0.2s', position: 'relative', background: isActive ? 'var(--gold)' : 'var(--b3)' }}>
                   <div style={{ position: 'absolute', top: 3, width: 18, height: 18, borderRadius: '50%', background: '#fff', transition: 'right 0.2s', right: isActive ? 3 : 23 }} />
                 </div>
               </div>
@@ -189,25 +189,25 @@ export default function TemplateBuilder({ products, initialData }: Props) {
                 <div
                   onClick={() => setExpandedTask(expandedTask === ti ? -1 : ti)}
                   style={{ padding: '14px 18px', display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }}>
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: task.title ? '#C8A96E' : '#1C1C2A', color: task.title ? '#000' : '#505062', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 900, flexShrink: 0 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: task.title ? 'var(--gold)' : 'var(--b3)', color: task.title ? '#000' : 'var(--t3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 900, flexShrink: 0 }}>
                     {ti + 1}
                   </div>
-                  <div style={{ flex: 1, fontSize: 14, fontWeight: 700, color: task.title ? '#EEEEF2' : '#505062' }}>
+                  <div style={{ flex: 1, fontSize: 14, fontWeight: 700, color: task.title ? 'var(--t)' : 'var(--t3)' }}>
                     {task.title || 'تسک بدون عنوان'}
                   </div>
                   <div style={{ display: 'flex', gap: 5 }}>
-                    {task.isBlocking && <span style={{ fontSize: 10, background: 'rgba(239,68,68,0.1)', color: '#EF4444', padding: '2px 7px', borderRadius: 100, border: '1px solid rgba(239,68,68,0.2)' }}>Blocking</span>}
-                    {task.recurringType && <span style={{ fontSize: 10, background: 'rgba(96,165,250,0.1)', color: '#60A5FA', padding: '2px 7px', borderRadius: 100, border: '1px solid rgba(96,165,250,0.2)' }}>Recurring</span>}
-                    <span style={{ fontSize: 10, color: '#505062' }}>{task.fields.length} فیلد</span>
+                    {task.isBlocking && <span style={{ fontSize: 10, background: 'rgba(239,68,68,0.1)', color: 'var(--red)', padding: '2px 7px', borderRadius: 100, border: '1px solid rgba(239,68,68,0.2)' }}>Blocking</span>}
+                    {task.recurringType && <span style={{ fontSize: 10, background: 'rgba(96,165,250,0.1)', color: 'var(--blue)', padding: '2px 7px', borderRadius: 100, border: '1px solid rgba(96,165,250,0.2)' }}>Recurring</span>}
+                    <span style={{ fontSize: 10, color: 'var(--t3)' }}>{task.fields.length} فیلد</span>
                   </div>
-                  <span style={{ color: '#505062', fontSize: 14 }}>{expandedTask === ti ? '▲' : '▼'}</span>
+                  <span style={{ color: 'var(--t3)', fontSize: 14 }}>{expandedTask === ti ? '▲' : '▼'}</span>
                 </div>
 
                 {expandedTask === ti && (
                   <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '18px 18px 20px' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 14 }}>
                       <div>
-                        <label className="admin-label">عنوان تسک <span style={{ color: '#EF4444' }}>*</span></label>
+                        <label className="admin-label">عنوان تسک <span style={{ color: 'var(--red)' }}>*</span></label>
                         <input className="admin-input" value={task.title} onChange={e => updateTask(ti, 'title', e.target.value)} placeholder="مثال: آنالیز اولیه" />
                       </div>
                       <div>
@@ -221,8 +221,8 @@ export default function TemplateBuilder({ products, initialData }: Props) {
                         { key: 'isRequired', label: 'الزامی' },
                         { key: 'isBlocking', label: 'Blocking (تسک بعدی قفل می‌ماند)' },
                       ].map(opt => (
-                        <label key={opt.key} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12.5, color: '#8888A0' }}>
-                          <input type="checkbox" checked={(task as any)[opt.key]} onChange={e => updateTask(ti, opt.key as keyof Task, e.target.checked)} style={{ accentColor: '#C8A96E' }} />
+                        <label key={opt.key} style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 12.5, color: 'var(--t2)' }}>
+                          <input type="checkbox" checked={(task as any)[opt.key]} onChange={e => updateTask(ti, opt.key as keyof Task, e.target.checked)} style={{ accentColor: 'var(--gold)' }} />
                           {opt.label}
                         </label>
                       ))}
@@ -237,9 +237,9 @@ export default function TemplateBuilder({ products, initialData }: Props) {
                             onClick={() => updateTask(ti, 'recurringType', r.val as any)}
                             style={{
                               padding: '5px 12px', borderRadius: 7, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
-                              background: task.recurringType === r.val ? '#C8A96E' : '#141420',
-                              color: task.recurringType === r.val ? '#000' : '#8888A0',
-                              border: `1px solid ${task.recurringType === r.val ? '#C8A96E' : 'rgba(255,255,255,0.06)'}`,
+                              background: task.recurringType === r.val ? 'var(--gold)' : 'var(--b2)',
+                              color: task.recurringType === r.val ? '#000' : 'var(--t2)',
+                              border: `1px solid ${task.recurringType === r.val ? 'var(--gold)' : 'rgba(255,255,255,0.06)'}`,
                             }}>
                             {r.label}
                           </button>
@@ -268,12 +268,12 @@ export default function TemplateBuilder({ products, initialData }: Props) {
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
                         <label className="admin-label" style={{ margin: 0 }}>فیلدهای تسک</label>
                         <button type="button" onClick={() => addField(ti)}
-                          style={{ padding: '4px 12px', borderRadius: 7, fontSize: 11.5, fontWeight: 800, background: 'rgba(200,169,110,0.1)', border: '1px solid rgba(200,169,110,0.2)', color: '#C8A96E', cursor: 'pointer', fontFamily: 'inherit' }}>
+                          style={{ padding: '4px 12px', borderRadius: 7, fontSize: 11.5, fontWeight: 800, background: 'rgba(200,169,110,0.1)', border: '1px solid rgba(200,169,110,0.2)', color: 'var(--gold)', cursor: 'pointer', fontFamily: 'inherit' }}>
                           + فیلد
                         </button>
                       </div>
                       {task.fields.map((field, fi) => (
-                        <div key={fi} style={{ background: '#0A0A12', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 10, padding: 14, marginBottom: 8 }}>
+                        <div key={fi} style={{ background: 'var(--bg)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 10, padding: 14, marginBottom: 8 }}>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 120px', gap: 8, marginBottom: 8 }}>
                             <div>
                               <label className="admin-label">برچسب</label>
@@ -297,31 +297,31 @@ export default function TemplateBuilder({ products, initialData }: Props) {
                             </div>
                           )}
                           <div style={{ display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap' }}>
-                            <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontSize: 12, color: '#8888A0' }}>
-                              <input type="checkbox" checked={field.required} onChange={e => updateField(ti, fi, 'required', e.target.checked)} style={{ accentColor: '#C8A96E' }} />
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontSize: 12, color: 'var(--t2)' }}>
+                              <input type="checkbox" checked={field.required} onChange={e => updateField(ti, fi, 'required', e.target.checked)} style={{ accentColor: 'var(--gold)' }} />
                               الزامی
                             </label>
-                            <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontSize: 12, color: '#22C55E' }}>
-                              <input type="checkbox" checked={field.usedInReport} onChange={e => updateField(ti, fi, 'usedInReport', e.target.checked)} style={{ accentColor: '#22C55E' }} />
+                            <label style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontSize: 12, color: 'var(--green)' }}>
+                              <input type="checkbox" checked={field.usedInReport} onChange={e => updateField(ti, fi, 'usedInReport', e.target.checked)} style={{ accentColor: 'var(--green)' }} />
                               در گزارش مشتری
                             </label>
                             {field.usedInReport && (
                               <input className="admin-input" value={field.reportLabel} onChange={e => updateField(ti, fi, 'reportLabel', e.target.value)} placeholder="برچسب در گزارش..." style={{ flex: 1, minWidth: 150, fontSize: 12, padding: '6px 10px' }} />
                             )}
-                            <button type="button" onClick={() => removeField(ti, fi)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#EF4444', fontSize: 11.5, fontFamily: 'inherit', marginRight: 'auto' }}>
+                            <button type="button" onClick={() => removeField(ti, fi)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--red)', fontSize: 11.5, fontFamily: 'inherit', marginRight: 'auto' }}>
                               حذف فیلد
                             </button>
                           </div>
                         </div>
                       ))}
                       {task.fields.length === 0 && (
-                        <div style={{ fontSize: 12, color: '#505062', padding: '8px 0' }}>این تسک فیلدی ندارد — فقط تیک تکمیل دارد</div>
+                        <div style={{ fontSize: 12, color: 'var(--t3)', padding: '8px 0' }}>این تسک فیلدی ندارد — فقط تیک تکمیل دارد</div>
                       )}
                     </div>
 
                     {/* Remove task */}
                     {tasks.length > 1 && (
-                      <button type="button" onClick={() => removeTask(ti)} style={{ marginTop: 14, background: 'none', border: 'none', cursor: 'pointer', color: '#EF4444', fontSize: 12, fontFamily: 'inherit' }}>
+                      <button type="button" onClick={() => removeTask(ti)} style={{ marginTop: 14, background: 'none', border: 'none', cursor: 'pointer', color: 'var(--red)', fontSize: 12, fontFamily: 'inherit' }}>
                         حذف این تسک
                       </button>
                     )}
@@ -332,7 +332,7 @@ export default function TemplateBuilder({ products, initialData }: Props) {
           </div>
 
           <button type="button" onClick={addTask}
-            style={{ width: '100%', padding: '12px', borderRadius: 10, background: 'transparent', border: '1.5px dashed rgba(200,169,110,0.3)', color: '#C8A96E', fontSize: 13, fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit' }}>
+            style={{ width: '100%', padding: '12px', borderRadius: 10, background: 'transparent', border: '1.5px dashed rgba(200,169,110,0.3)', color: 'var(--gold)', fontSize: 13, fontWeight: 800, cursor: 'pointer', fontFamily: 'inherit' }}>
             + افزودن تسک جدید
           </button>
         </div>
@@ -343,20 +343,20 @@ export default function TemplateBuilder({ products, initialData }: Props) {
             <div className="admin-card-head"><div className="admin-card-title">خلاصه Template</div></div>
             <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5 }}>
-                <span style={{ color: '#505062' }}>تعداد تسک</span>
-                <strong style={{ color: '#C8A96E' }}>{tasks.length}</strong>
+                <span style={{ color: 'var(--t3)' }}>تعداد تسک</span>
+                <strong style={{ color: 'var(--gold)' }}>{tasks.length}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5 }}>
-                <span style={{ color: '#505062' }}>تسک Blocking</span>
-                <strong style={{ color: '#EF4444' }}>{tasks.filter(t => t.isBlocking).length}</strong>
+                <span style={{ color: 'var(--t3)' }}>تسک Blocking</span>
+                <strong style={{ color: 'var(--red)' }}>{tasks.filter(t => t.isBlocking).length}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5 }}>
-                <span style={{ color: '#505062' }}>تسک Recurring</span>
-                <strong style={{ color: '#60A5FA' }}>{tasks.filter(t => t.recurringType).length}</strong>
+                <span style={{ color: 'var(--t3)' }}>تسک Recurring</span>
+                <strong style={{ color: 'var(--blue)' }}>{tasks.filter(t => t.recurringType).length}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12.5 }}>
-                <span style={{ color: '#505062' }}>فیلدهای گزارش</span>
-                <strong style={{ color: '#22C55E' }}>{tasks.reduce((s, t) => s + t.fields.filter(f => f.usedInReport).length, 0)}</strong>
+                <span style={{ color: 'var(--t3)' }}>فیلدهای گزارش</span>
+                <strong style={{ color: 'var(--green)' }}>{tasks.reduce((s, t) => s + t.fields.filter(f => f.usedInReport).length, 0)}</strong>
               </div>
             </div>
           </div>
@@ -367,9 +367,9 @@ export default function TemplateBuilder({ products, initialData }: Props) {
             <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
               {tasks.map((t, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: t.title ? '#C8A96E' : '#1C1C2A', color: t.title ? '#000' : '#505062', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 900, flexShrink: 0 }}>{i + 1}</div>
-                  <span style={{ fontSize: 12, color: t.title ? '#EEEEF2' : '#505062', flex: 1 }}>{t.title || '...'}</span>
-                  {t.isBlocking && <span style={{ fontSize: 9, color: '#EF4444' }}>🔒</span>}
+                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: t.title ? 'var(--gold)' : 'var(--b3)', color: t.title ? '#000' : 'var(--t3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 900, flexShrink: 0 }}>{i + 1}</div>
+                  <span style={{ fontSize: 12, color: t.title ? 'var(--t)' : 'var(--t3)', flex: 1 }}>{t.title || '...'}</span>
+                  {t.isBlocking && <span style={{ fontSize: 9, color: 'var(--red)' }}>🔒</span>}
                 </div>
               ))}
             </div>
@@ -378,7 +378,7 @@ export default function TemplateBuilder({ products, initialData }: Props) {
           <button onClick={handleSubmit} disabled={loading} className="admin-btn admin-btn-gold" style={{ width: '100%', justifyContent: 'center', fontSize: 14, padding: '13px' }}>
             {loading ? 'در حال ذخیره...' : initialData ? 'ذخیره تغییرات' : '+ ذخیره Template'}
           </button>
-          <Link href="/admin/process-engine" className="admin-btn" style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '11px', background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: '#8888A0', textDecoration: 'none', display: 'flex', alignItems: 'center', marginTop: 8 }}>
+          <Link href="/admin/process-engine" className="admin-btn" style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '11px', background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: 'var(--t2)', textDecoration: 'none', display: 'flex', alignItems: 'center', marginTop: 8 }}>
             انصراف
           </Link>
         </div>

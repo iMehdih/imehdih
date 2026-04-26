@@ -67,7 +67,7 @@ export default function TicketChat({ ticketId, messages: initialMessages, userId
 
           if (isSystem) {
             return (
-              <div key={i} style={{ textAlign: 'center', fontSize: 11.5, color: '#505062', padding: '6px 0' }}>
+              <div key={i} style={{ textAlign: 'center', fontSize: 11.5, color: 'var(--t3)', padding: '6px 0' }}>
                 {msg.content}
               </div>
             )
@@ -82,17 +82,17 @@ export default function TicketChat({ ticketId, messages: initialMessages, userId
                 border: `2px solid ${isMe ? 'rgba(200,169,110,0.3)' : 'rgba(96,165,250,0.3)'}`,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 12, fontWeight: 900,
-                color: isMe ? '#C8A96E' : '#60A5FA',
+                color: isMe ? 'var(--gold)' : 'var(--blue)',
               }}>
                 {isMe ? 'ش' : 'پ'}
               </div>
 
               <div style={{ flex: 1, maxWidth: '80%' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <span style={{ fontSize: 12.5, fontWeight: 800, color: isMe ? '#C8A96E' : '#60A5FA' }}>
+                  <span style={{ fontSize: 12.5, fontWeight: 800, color: isMe ? 'var(--gold)' : 'var(--blue)' }}>
                     {isMe ? 'شما' : 'پشتیبانی'}
                   </span>
-                  <span style={{ fontSize: 10.5, color: '#505062' }}>{date}</span>
+                  <span style={{ fontSize: 10.5, color: 'var(--t3)' }}>{date}</span>
                 </div>
 
                 <div style={{
@@ -101,7 +101,7 @@ export default function TicketChat({ ticketId, messages: initialMessages, userId
                   borderRadius: 12,
                   padding: '12px 16px',
                   fontSize: 13.5,
-                  color: '#EEEEF2',
+                  color: 'var(--t)',
                   lineHeight: 1.85,
                   whiteSpace: 'pre-wrap',
                 }}>

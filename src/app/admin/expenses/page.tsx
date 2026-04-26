@@ -42,14 +42,14 @@ export default function AdminExpensesPage() {
       <div className="admin-card">
         <div className="admin-card-head">
           <div className="admin-card-title">هزینه‌ها ({total})</div>
-          <span style={{ fontSize: 12, color: '#EF4444', fontWeight: 800 }}>
+          <span style={{ fontSize: 12, color: 'var(--red)', fontWeight: 800 }}>
             جمع: {expenses.reduce((s, e) => s + e.amount, 0).toLocaleString('fa')} ت
           </span>
         </div>
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#505062', fontSize: 13 }}>در حال بارگذاری...</div>
+          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>در حال بارگذاری...</div>
         ) : expenses.length === 0 ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#505062', fontSize: 13 }}>هزینه‌ای ثبت نشده</div>
+          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>هزینه‌ای ثبت نشده</div>
         ) : (
           <div className="admin-table-wrap">
             <table className="admin-table">
@@ -61,17 +61,17 @@ export default function AdminExpensesPage() {
                   <tr key={e._id}>
                     <td style={{ fontWeight: 700 }}>
                       {e.title}
-                      {e.description && <div style={{ fontSize: 11, color: '#505062', fontWeight: 400 }}>{e.description}</div>}
+                      {e.description && <div style={{ fontSize: 11, color: 'var(--t3)', fontWeight: 400 }}>{e.description}</div>}
                     </td>
                     <td>
                       <span className={`admin-badge admin-badge-${categoryColors[e.category] || 'gray'}`}>
                         {categoryLabels[e.category] || e.category}
                       </span>
                     </td>
-                    <td style={{ fontSize: 11.5, color: '#505062' }}>
+                    <td style={{ fontSize: 11.5, color: 'var(--t3)' }}>
                       {e.type === 'auto' ? '🤖 خودکار' : e.type === 'offline' ? '📄 آفلاین' : '✏ دستی'}
                     </td>
-                    <td style={{ color: '#EF4444', fontWeight: 800 }}>{e.amount.toLocaleString('fa')} ت</td>
+                    <td style={{ color: 'var(--red)', fontWeight: 800 }}>{e.amount.toLocaleString('fa')} ت</td>
                     <td style={{ fontSize: 11.5 }}>{new Date(e.date).toLocaleDateString('fa-IR')}</td>
                     <td style={{ fontSize: 12 }}>
                       {e.createdBy?.firstName ? `${e.createdBy.firstName} ${e.createdBy.lastName}` : '—'}

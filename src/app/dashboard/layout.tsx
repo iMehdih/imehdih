@@ -6,6 +6,7 @@ import { connectDB } from '@/lib/db/mongoose'
 import User from '@/models/User'
 import DashboardSidebar from '@/components/dashboard/Sidebar'
 import DashboardTopbar from '@/components/dashboard/Topbar'
+import MobileMenu from '@/components/ui/MobileMenu'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies()
@@ -30,14 +31,15 @@ export default async function DashboardLayout({ children }: { children: React.Re
   }
 
   return (
-    <div className="dashboard-root">
+    <div className="db-root">
       <DashboardSidebar user={userData} />
-      <div className="dashboard-main">
+      <div className="db-main">
         <DashboardTopbar user={userData} />
-        <main className="dashboard-content">
+        <main className="db-content">
           {children}
         </main>
       </div>
+      <MobileMenu />
     </div>
   )
 }

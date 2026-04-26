@@ -28,7 +28,7 @@ export default async function ProcessEnginePage() {
   return (
     <div className="admin-page">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-        <div style={{ fontSize: 13, color: '#505062' }}>{(templates as any[]).length} template تعریف شده</div>
+        <div style={{ fontSize: 13, color: 'var(--t3)' }}>{(templates as any[]).length} template تعریف شده</div>
         <Link href="/admin/process-engine/new" className="admin-btn admin-btn-gold">
           + Template جدید
         </Link>
@@ -38,8 +38,8 @@ export default async function ProcessEnginePage() {
         <div className="admin-card">
           <div style={{ padding: '60px 20px', textAlign: 'center' }}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>⚙</div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: '#EEEEF2', marginBottom: 8 }}>هنوز Template‌ای تعریف نشده</div>
-            <div style={{ fontSize: 13, color: '#505062', marginBottom: 20 }}>
+            <div style={{ fontSize: 16, fontWeight: 800, color: 'var(--t)', marginBottom: 8 }}>هنوز Template‌ای تعریف نشده</div>
+            <div style={{ fontSize: 13, color: 'var(--t3)', marginBottom: 20 }}>
               Template تعریف کنید تا بعد از هر سفارش، تسک‌ها اتوماتیک ساخته بشن
             </div>
             <Link href="/admin/process-engine/new" className="admin-btn admin-btn-gold">
@@ -62,11 +62,11 @@ export default async function ProcessEnginePage() {
                       {t.isActive ? 'فعال' : 'غیرفعال'}
                     </span>
                   </div>
-                  <div style={{ display: 'flex', gap: 16, fontSize: 12, color: '#505062', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: 16, fontSize: 12, color: 'var(--t3)', flexWrap: 'wrap' }}>
                     {t.productId && (
-                      <span>محصول: <strong style={{ color: '#EEEEF2' }}>{t.productId.title}</strong></span>
+                      <span>محصول: <strong style={{ color: 'var(--t)' }}>{t.productId.title}</strong></span>
                     )}
-                    <span style={{ color: '#C8A96E' }}>{t.tasks?.length || 0} تسک</span>
+                    <span style={{ color: 'var(--gold)' }}>{t.tasks?.length || 0} تسک</span>
                     <span>{t.tasks?.filter((tk: any) => tk.isBlocking).length || 0} تسک blocking</span>
                     <span>{t.tasks?.filter((tk: any) => tk.recurringType).length || 0} تسک recurring</span>
                   </div>
@@ -83,14 +83,14 @@ export default async function ProcessEnginePage() {
                 {(t.tasks || []).map((task: any, i: number) => (
                   <div key={i} style={{
                     display: 'flex', alignItems: 'center', gap: 6,
-                    background: '#141420', border: '1px solid rgba(255,255,255,0.06)',
+                    background: 'var(--b2)', border: '1px solid rgba(255,255,255,0.06)',
                     borderRadius: 8, padding: '5px 10px', fontSize: 11.5,
                   }}>
-                    <span style={{ color: '#505062', fontWeight: 700 }}>{i + 1}</span>
-                    <span style={{ color: '#EEEEF2' }}>{task.title}</span>
-                    {task.isBlocking && <span title="Blocking" style={{ color: '#EF4444', fontSize: 10 }}>🔒</span>}
-                    {task.recurringType && <span title={`تکرار ${task.recurringType}`} style={{ color: '#60A5FA', fontSize: 10 }}>↻</span>}
-                    {task.fields?.some((f: any) => f.usedInReport) && <span title="در گزارش" style={{ color: '#22C55E', fontSize: 10 }}>📊</span>}
+                    <span style={{ color: 'var(--t3)', fontWeight: 700 }}>{i + 1}</span>
+                    <span style={{ color: 'var(--t)' }}>{task.title}</span>
+                    {task.isBlocking && <span title="Blocking" style={{ color: 'var(--red)', fontSize: 10 }}>🔒</span>}
+                    {task.recurringType && <span title={`تکرار ${task.recurringType}`} style={{ color: 'var(--blue)', fontSize: 10 }}>↻</span>}
+                    {task.fields?.some((f: any) => f.usedInReport) && <span title="در گزارش" style={{ color: 'var(--green)', fontSize: 10 }}>📊</span>}
                   </div>
                 ))}
               </div>

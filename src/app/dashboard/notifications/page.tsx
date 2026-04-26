@@ -12,12 +12,12 @@ const typeIcons: Record<string, string> = {
 }
 
 const typeColors: Record<string, string> = {
-  order: '#C8A96E',
-  ticket: '#60A5FA',
-  project: '#22C55E',
-  payment: '#C8A96E',
-  broadcast: '#8888A0',
-  system: '#505062',
+  order: 'var(--gold)',
+  ticket: 'var(--blue)',
+  project: 'var(--green)',
+  payment: 'var(--gold)',
+  broadcast: 'var(--t2)',
+  system: 'var(--t3)',
 }
 
 export default function NotificationsPage() {
@@ -55,9 +55,9 @@ export default function NotificationsPage() {
   return (
     <div className="db-page">
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-        <div style={{ fontSize: 13, color: '#505062' }}>
+        <div style={{ fontSize: 13, color: 'var(--t3)' }}>
           {unreadCount > 0 ? (
-            <span style={{ color: '#EF4444', fontWeight: 700 }}>{unreadCount} اعلان خوانده‌نشده</span>
+            <span style={{ color: 'var(--red)', fontWeight: 700 }}>{unreadCount} اعلان خوانده‌نشده</span>
           ) : (
             'همه اعلان‌ها خوانده شده ✓'
           )}
@@ -75,7 +75,7 @@ export default function NotificationsPage() {
 
       <div className="db-card">
         {loading ? (
-          <div style={{ padding: '40px', textAlign: 'center', color: '#505062', fontSize: 13 }}>
+          <div style={{ padding: '40px', textAlign: 'center', color: 'var(--t3)', fontSize: 13 }}>
             در حال بارگذاری...
           </div>
         ) : notifications.length === 0 ? (
@@ -105,10 +105,10 @@ export default function NotificationsPage() {
                 {/* Icon */}
                 <div style={{
                   width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
-                  background: `${typeColors[notif.type] || '#505062'}15`,
-                  border: `1px solid ${typeColors[notif.type] || '#505062'}30`,
+                  background: `${typeColors[notif.type] || 'var(--t3)'}15`,
+                  border: `1px solid ${typeColors[notif.type] || 'var(--t3)'}30`,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 14, color: typeColors[notif.type] || '#505062',
+                  fontSize: 14, color: typeColors[notif.type] || 'var(--t3)',
                 }}>
                   {typeIcons[notif.type] || '◆'}
                 </div>
@@ -116,15 +116,15 @@ export default function NotificationsPage() {
                 {/* Content */}
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                    <span style={{ fontSize: 13.5, fontWeight: notif.isRead ? 600 : 800, color: notif.isRead ? '#8888A0' : '#EEEEF2' }}>
+                    <span style={{ fontSize: 13.5, fontWeight: notif.isRead ? 600 : 800, color: notif.isRead ? 'var(--t2)' : 'var(--t)' }}>
                       {notif.title}
                     </span>
                     {!notif.isRead && (
-                      <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#C8A96E', flexShrink: 0, display: 'inline-block' }} />
+                      <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--gold)', flexShrink: 0, display: 'inline-block' }} />
                     )}
                   </div>
-                  <div style={{ fontSize: 12.5, color: '#505062', lineHeight: 1.6 }}>{notif.content}</div>
-                  <div style={{ fontSize: 11, color: '#505062', marginTop: 6 }}>
+                  <div style={{ fontSize: 12.5, color: 'var(--t3)', lineHeight: 1.6 }}>{notif.content}</div>
+                  <div style={{ fontSize: 11, color: 'var(--t3)', marginTop: 6 }}>
                     {new Date(notif.createdAt).toLocaleString('fa-IR')}
                   </div>
                 </div>

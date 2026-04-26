@@ -52,7 +52,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
       <div className="db-card">
         <div className="db-card-head">
           <div className="db-card-title">تمام سفارشات</div>
-          <span style={{ fontSize: 12, color: '#505062' }}>{orders.length} سفارش</span>
+          <span style={{ fontSize: 12, color: 'var(--t3)' }}>{orders.length} سفارش</span>
         </div>
         {orders.length === 0 ? (
           <div className="db-empty">
@@ -83,12 +83,12 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
                       <td>
                         {order.items[0]?.title}
                         {order.items.length > 1 && (
-                          <span style={{ fontSize: 11, color: '#505062', marginRight: 6 }}>
+                          <span style={{ fontSize: 11, color: 'var(--t3)', marginRight: 6 }}>
                             +{order.items.length - 1} مورد
                           </span>
                         )}
                       </td>
-                      <td style={{ color: '#C8A96E', fontWeight: 800 }}>
+                      <td style={{ color: 'var(--gold)', fontWeight: 800 }}>
                         {order.finalAmount.toLocaleString('fa')} ت
                       </td>
                       <td>{date}</td>

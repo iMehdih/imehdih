@@ -125,14 +125,14 @@ export default async function AdminTicketsPage({
                     <td className="admin-table-mono" style={{ fontSize: 11 }}>{t.ticketNumber}</td>
                     <td>
                       <div style={{ fontWeight: 700 }}>{u?.firstName ? `${u.firstName} ${u.lastName}` : '—'}</div>
-                      <div style={{ fontSize: 10.5, color: '#505062' }}>{u?.mobile}</div>
+                      <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>{u?.mobile}</div>
                     </td>
                     <td style={{ maxWidth: 220 }}>
                       <div style={{ fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                        {isOpen && <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#EF4444', marginLeft: 5, verticalAlign: 'middle' }}></span>}
+                        {isOpen && <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--red)', marginLeft: 5, verticalAlign: 'middle' }}></span>}
                         {t.title}
                       </div>
-                      {t.relatedDomain && <div style={{ fontSize: 10.5, color: '#505062' }}>{t.relatedDomain}</div>}
+                      {t.relatedDomain && <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>{t.relatedDomain}</div>}
                     </td>
                     <td>
                       <span className="admin-badge admin-badge-gray" style={{ fontSize: 9.5 }}>
@@ -141,7 +141,7 @@ export default async function AdminTicketsPage({
                     </td>
                     <td style={{ fontSize: 12 }}>
                       {t.assignedTo ? `${t.assignedTo.firstName} ${t.assignedTo.lastName}` : (
-                        <span style={{ color: '#EF4444', fontSize: 11 }}>بدون assign</span>
+                        <span style={{ color: 'var(--red)', fontSize: 11 }}>بدون assign</span>
                       )}
                     </td>
                     <td style={{ fontSize: 11 }}>{new Date(t.createdAt).toLocaleDateString('fa-IR')}</td>
@@ -164,9 +164,9 @@ export default async function AdminTicketsPage({
               <a key={p} href={buildUrl({ page: String(p) })}
                 style={{
                   padding: '5px 10px', borderRadius: 7, fontSize: 12, fontWeight: 700, textDecoration: 'none',
-                  background: p === page ? '#C8A96E' : '#141420',
-                  color: p === page ? '#000' : '#8888A0',
-                  border: `1px solid ${p === page ? '#C8A96E' : 'rgba(255,255,255,0.06)'}`,
+                  background: p === page ? 'var(--gold)' : 'var(--b2)',
+                  color: p === page ? '#000' : 'var(--t2)',
+                  border: `1px solid ${p === page ? 'var(--gold)' : 'rgba(255,255,255,0.06)'}`,
                 }}>
                 {p}
               </a>

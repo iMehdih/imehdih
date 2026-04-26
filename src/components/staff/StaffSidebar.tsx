@@ -28,7 +28,7 @@ export default function StaffSidebar({ staffId }: { staffId: string }) {
         <div className="db-sb-ava" style={{ background: 'linear-gradient(135deg,#60A5FA,#2563EB)', color: '#fff' }}>ک</div>
         <div className="db-sb-user-info">
           <div className="db-sb-name">پنل کارمند</div>
-          <div className="db-sb-mobile" style={{ color: '#60A5FA', fontSize: 10.5 }}>Staff</div>
+          <div className="db-sb-mobile" style={{ color: 'var(--blue)', fontSize: 10.5 }}>Staff</div>
         </div>
       </div>
       <nav className="db-sb-nav">

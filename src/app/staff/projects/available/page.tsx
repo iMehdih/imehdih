@@ -28,7 +28,7 @@ export default async function AvailableProjectsPage() {
 
   return (
     <div className="db-page">
-      <div style={{ fontSize: 13, color: '#505062', marginBottom: 20 }}>
+      <div style={{ fontSize: 13, color: 'var(--t3)', marginBottom: 20 }}>
         {(projects as any[]).length} پروژه منتظر کارمند
       </div>
 
@@ -51,19 +51,19 @@ export default async function AvailableProjectsPage() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                     <div style={{ fontSize: 15, fontWeight: 900 }}>{p.title}</div>
                     {p.type === 'internal' && (
-                      <span style={{ fontSize: 9.5, fontWeight: 900, padding: '2px 7px', borderRadius: 100, background: 'rgba(96,165,250,0.1)', color: '#60A5FA', border: '1px solid rgba(96,165,250,0.2)' }}>درون‌سازمانی</span>
+                      <span style={{ fontSize: 9.5, fontWeight: 900, padding: '2px 7px', borderRadius: 100, background: 'rgba(96,165,250,0.1)', color: 'var(--blue)', border: '1px solid rgba(96,165,250,0.2)' }}>درون‌سازمانی</span>
                     )}
                     {p.isSpecificStaff && (
-                      <span style={{ fontSize: 9.5, fontWeight: 900, padding: '2px 7px', borderRadius: 100, background: 'rgba(200,169,110,0.1)', color: '#C8A96E', border: '1px solid rgba(200,169,110,0.2)' }}>اختصاصی شما</span>
+                      <span style={{ fontSize: 9.5, fontWeight: 900, padding: '2px 7px', borderRadius: 100, background: 'rgba(200,169,110,0.1)', color: 'var(--gold)', border: '1px solid rgba(200,169,110,0.2)' }}>اختصاصی شما</span>
                     )}
                   </div>
-                  <div style={{ display: 'flex', gap: 16, fontSize: 12, color: '#505062', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', gap: 16, fontSize: 12, color: 'var(--t3)', flexWrap: 'wrap' }}>
                     {p.customerId && p.type !== 'internal' && (
                       <span>مشتری: {p.customerId.firstName} {p.customerId.lastName}</span>
                     )}
                     <span>{p.tasks?.length || 0} تسک</span>
                     {p.commissionRate && p.type !== 'internal' && (
-                      <span style={{ color: '#22C55E' }}>کمیسیون {p.commissionRate}٪</span>
+                      <span style={{ color: 'var(--green)' }}>کمیسیون {p.commissionRate}٪</span>
                     )}
                     <span>{new Date(p.createdAt).toLocaleDateString('fa-IR')}</span>
                   </div>

@@ -126,13 +126,13 @@ export default function TicketNewForm({ orders }: Props) {
               <div style={{
                 width: 24, height: 24, borderRadius: '50%', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
                 fontSize: 11, fontWeight: 900,
-                background: isActive ? '#C8A96E' : isDone ? '#22C55E' : isSkipped ? 'var(--b3)' : 'var(--b3)',
-                color: (isActive || isDone) ? '#000' : '#505062',
+                background: isActive ? 'var(--gold)' : isDone ? 'var(--green)' : isSkipped ? 'var(--b3)' : 'var(--b3)',
+                color: (isActive || isDone) ? '#000' : 'var(--t3)',
               }}>
                 {isDone ? '✓' : i + 1}
               </div>
-              <span style={{ fontSize: 12.5, fontWeight: 700, color: isActive ? '#C8A96E' : isDone ? '#22C55E' : '#505062' }}>
-                {isSkipped ? <s style={{ color: '#505062' }}>{s}</s> : s}
+              <span style={{ fontSize: 12.5, fontWeight: 700, color: isActive ? 'var(--gold)' : isDone ? 'var(--green)' : 'var(--t3)' }}>
+                {isSkipped ? <s style={{ color: 'var(--t3)' }}>{s}</s> : s}
               </span>
             </div>
           )
@@ -160,10 +160,10 @@ export default function TicketNewForm({ orders }: Props) {
                   ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
                 }}
               >
-                <div style={{ fontSize: 22, marginBottom: 10, color: '#C8A96E' }}>{dept.icon}</div>
-                <div style={{ fontSize: 12.5, fontWeight: 700, color: '#EEEEF2', lineHeight: 1.4 }}>{dept.label}</div>
+                <div style={{ fontSize: 22, marginBottom: 10, color: 'var(--gold)' }}>{dept.icon}</div>
+                <div style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--t)', lineHeight: 1.4 }}>{dept.label}</div>
                 {dept.checkSupport && (
-                  <div style={{ fontSize: 10, color: '#505062', marginTop: 6 }}>نیاز به پشتیبانی فعال</div>
+                  <div style={{ fontSize: 10, color: 'var(--t3)', marginTop: 6 }}>نیاز به پشتیبانی فعال</div>
                 )}
               </div>
             ))}
@@ -176,7 +176,7 @@ export default function TicketNewForm({ orders }: Props) {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
             <button onClick={() => { setStep('department'); setSelectedDept(null) }}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C8A96E', fontSize: 13, fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 4 }}>
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--gold)', fontSize: 13, fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 4 }}>
               ← بازگشت
             </button>
             <div style={{ fontSize: 15, fontWeight: 900 }}>
@@ -187,8 +187,8 @@ export default function TicketNewForm({ orders }: Props) {
           {filteredOrders.length === 0 ? (
             <div className="db-card">
               <div style={{ padding: '40px 20px', textAlign: 'center' }}>
-                <div style={{ fontSize: 32, color: '#1C1C2A', marginBottom: 12 }}>◈</div>
-                <div style={{ fontSize: 14, color: '#505062', marginBottom: 16 }}>
+                <div style={{ fontSize: 32, color: 'var(--b3)', marginBottom: 12 }}>◈</div>
+                <div style={{ fontSize: 14, color: 'var(--t3)', marginBottom: 16 }}>
                   هیچ محصول یا خدمتی برای این دپارتمان یافت نشد.
                   <br />
                   <span style={{ fontSize: 12 }}>برای این دپارتمان باید خرید فعال داشته باشید.</span>
@@ -227,17 +227,17 @@ export default function TicketNewForm({ orders }: Props) {
                       onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,169,110,0.35)'}
                       onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.06)'}
                     >
-                      <div style={{ width: 44, height: 44, borderRadius: 11, background: 'rgba(200,169,110,0.1)', border: '1px solid rgba(200,169,110,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, color: '#C8A96E', flexShrink: 0 }}>
+                      <div style={{ width: 44, height: 44, borderRadius: 11, background: 'rgba(200,169,110,0.1)', border: '1px solid rgba(200,169,110,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, color: 'var(--gold)', flexShrink: 0 }}>
                         {selectedDept.icon}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 14, fontWeight: 800, marginBottom: 4 }}>{item.title}</div>
-                        <div style={{ fontSize: 11.5, color: '#505062', display: 'flex', gap: 10 }}>
+                        <div style={{ fontSize: 11.5, color: 'var(--t3)', display: 'flex', gap: 10 }}>
                           <span>سفارش #{order.orderNumber}</span>
                           {order.paidAt && <span>{new Date(order.paidAt).toLocaleDateString('fa-IR')}</span>}
                         </div>
                       </div>
-                      <div style={{ color: '#C8A96E', fontSize: 18 }}>←</div>
+                      <div style={{ color: 'var(--gold)', fontSize: 18 }}>←</div>
                     </div>
                   ))
               )}
@@ -252,7 +252,7 @@ export default function TicketNewForm({ orders }: Props) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
             <button
               onClick={() => setStep(selectedDept.needsProduct ? 'product' : 'department')}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#C8A96E', fontSize: 13, fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 4 }}>
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--gold)', fontSize: 13, fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 4 }}>
               ← بازگشت
             </button>
             <div style={{ fontSize: 15, fontWeight: 900 }}>اطلاعات تیکت را وارد کنید</div>
@@ -261,19 +261,19 @@ export default function TicketNewForm({ orders }: Props) {
           {/* خلاصه انتخاب‌ها */}
           <div style={{ background: 'rgba(200,169,110,0.06)', border: '1px solid rgba(200,169,110,0.15)', borderRadius: 10, padding: '12px 16px', marginBottom: 20, display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <div style={{ fontSize: 12.5 }}>
-              <span style={{ color: '#505062' }}>دپارتمان: </span>
-              <strong style={{ color: '#C8A96E' }}>{selectedDept.label}</strong>
+              <span style={{ color: 'var(--t3)' }}>دپارتمان: </span>
+              <strong style={{ color: 'var(--gold)' }}>{selectedDept.label}</strong>
             </div>
             {selectedItem && (
               <div style={{ fontSize: 12.5 }}>
-                <span style={{ color: '#505062' }}>محصول: </span>
-                <strong style={{ color: '#EEEEF2' }}>{selectedItem.title}</strong>
+                <span style={{ color: 'var(--t3)' }}>محصول: </span>
+                <strong style={{ color: 'var(--t)' }}>{selectedItem.title}</strong>
               </div>
             )}
             {selectedOrder && (
               <div style={{ fontSize: 12.5 }}>
-                <span style={{ color: '#505062' }}>سفارش: </span>
-                <strong style={{ color: '#EEEEF2' }}>#{selectedOrder.orderNumber}</strong>
+                <span style={{ color: 'var(--t3)' }}>سفارش: </span>
+                <strong style={{ color: 'var(--t)' }}>#{selectedOrder.orderNumber}</strong>
               </div>
             )}
           </div>
@@ -285,7 +285,7 @@ export default function TicketNewForm({ orders }: Props) {
           <div className="db-card">
             <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 18 }}>
               <div>
-                <label className="db-label">عنوان تیکت <span style={{ color: '#EF4444' }}>*</span></label>
+                <label className="db-label">عنوان تیکت <span style={{ color: 'var(--red)' }}>*</span></label>
                 <input
                   className="db-input"
                   value={title}
@@ -293,13 +293,13 @@ export default function TicketNewForm({ orders }: Props) {
                   placeholder="مشکل را به طور خلاصه بنویسید..."
                   maxLength={200}
                 />
-                <div style={{ fontSize: 11, color: '#505062', marginTop: 4, textAlign: 'left' }}>
+                <div style={{ fontSize: 11, color: 'var(--t3)', marginTop: 4, textAlign: 'left' }}>
                   {title.length}/200
                 </div>
               </div>
 
               <div>
-                <label className="db-label">توضیحات کامل <span style={{ color: '#EF4444' }}>*</span></label>
+                <label className="db-label">توضیحات کامل <span style={{ color: 'var(--red)' }}>*</span></label>
                 <textarea
                   className="db-input"
                   value={content}
@@ -319,7 +319,7 @@ export default function TicketNewForm({ orders }: Props) {
                 >
                   {loading ? 'در حال ثبت...' : 'ثبت تیکت'}
                 </button>
-                <div style={{ fontSize: 12, color: '#505062', display: 'flex', alignItems: 'center' }}>
+                <div style={{ fontSize: 12, color: 'var(--t3)', display: 'flex', alignItems: 'center' }}>
                   پاسخ معمولاً ظرف ۴۵ دقیقه ارائه می‌شود
                 </div>
               </div>

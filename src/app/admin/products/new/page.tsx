@@ -74,17 +74,17 @@ export default function NewProductPage() {
             <div className="admin-card-head"><div className="admin-card-title">اطلاعات اصلی</div></div>
             <div style={{padding:20,display:'flex',flexDirection:'column',gap:14}}>
               <div>
-                <label className="admin-label">نوع محصول <span style={{color:'#EF4444'}}>*</span></label>
+                <label className="admin-label">نوع محصول <span style={{color:'var(--red)'}}>*</span></label>
                 <select className="admin-input" value={form.type} onChange={e => inp('type', e.target.value)}>
                   {typeOptions.map(o => <option key={o.val} value={o.val}>{o.label}</option>)}
                 </select>
               </div>
               <div>
-                <label className="admin-label">عنوان <span style={{color:'#EF4444'}}>*</span></label>
+                <label className="admin-label">عنوان <span style={{color:'var(--red)'}}>*</span></label>
                 <input className="admin-input" value={form.title} onChange={e => { inp('title', e.target.value); if(!form.slug) inp('slug', autoSlug(e.target.value)) }} placeholder="قالب آواتار Pro" />
               </div>
               <div>
-                <label className="admin-label">Slug (URL) <span style={{color:'#EF4444'}}>*</span></label>
+                <label className="admin-label">Slug (URL) <span style={{color:'var(--red)'}}>*</span></label>
                 <input className="admin-input" value={form.slug} onChange={e => inp('slug', e.target.value)} placeholder="avatar-pro-theme" dir="ltr" />
               </div>
               <div>
@@ -121,9 +121,9 @@ export default function NewProductPage() {
             <div className="admin-card-head"><div className="admin-card-title">قیمت‌گذاری</div></div>
             <div style={{padding:20,display:'flex',flexDirection:'column',gap:14}}>
               <div>
-                <label className="admin-label">قیمت (تومان) <span style={{color:'#EF4444'}}>*</span></label>
+                <label className="admin-label">قیمت (تومان) <span style={{color:'var(--red)'}}>*</span></label>
                 <input className="admin-input" type="number" value={form.price} onChange={e => inp('price', e.target.value)} placeholder="500000" dir="ltr" />
-                <div style={{fontSize:11,color:'#505062',marginTop:4}}>برای رایگان عدد ۰ وارد کنید</div>
+                <div style={{fontSize:11,color:'var(--t3)',marginTop:4}}>برای رایگان عدد ۰ وارد کنید</div>
               </div>
               <div>
                 <label className="admin-label">قیمت با تخفیف (تومان)</label>
@@ -145,10 +145,10 @@ export default function NewProductPage() {
                 { field: 'isFeatured', label: 'نمایش به عنوان ویژه' },
               ].map(({ field, label }) => (
                 <div key={field} style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                  <span style={{fontSize:13,color:'#8888A0'}}>{label}</span>
+                  <span style={{fontSize:13,color:'var(--t2)'}}>{label}</span>
                   <div onClick={() => setForm(f => ({ ...f, [field]: !f[field as keyof typeof f] }))}
                     style={{width:44,height:24,borderRadius:100,cursor:'pointer',transition:'background 0.2s',position:'relative',
-                      background: (form as any)[field] ? '#C8A96E' : '#1C1C2A'}}>
+                      background: (form as any)[field] ? 'var(--gold)' : 'var(--b3)'}}>
                     <div style={{position:'absolute',top:3,width:18,height:18,borderRadius:'50%',background:'#fff',transition:'right 0.2s',
                       right: (form as any)[field] ? 3 : 23}} />
                   </div>
@@ -161,7 +161,7 @@ export default function NewProductPage() {
           <button onClick={handleSubmit} disabled={loading} className="admin-btn admin-btn-gold" style={{width:'100%',justifyContent:'center',fontSize:14,padding:'13px'}}>
             {loading ? 'در حال ذخیره...' : '+ ذخیره محصول'}
           </button>
-          <Link href="/admin/products" className="admin-btn" style={{width:'100%',justifyContent:'center',fontSize:13,padding:'11px',background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'#8888A0',textDecoration:'none',display:'flex',alignItems:'center'}}>
+          <Link href="/admin/products" className="admin-btn" style={{width:'100%',justifyContent:'center',fontSize:13,padding:'11px',background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'var(--t2)',textDecoration:'none',display:'flex',alignItems:'center'}}>
             انصراف
           </Link>
         </div>

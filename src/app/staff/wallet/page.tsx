@@ -37,11 +37,11 @@ export default function StaffWalletPage() {
     <div className="db-page">
       {/* Wallet Balance */}
       <div style={{ background: 'linear-gradient(135deg,rgba(200,169,110,0.15),rgba(200,169,110,0.05))', border: '1px solid rgba(200,169,110,0.25)', borderRadius: 18, padding: '28px', marginBottom: 20 }}>
-        <div style={{ fontSize: 12, color: '#505062', marginBottom: 8 }}>موجودی کیف پول</div>
-        <div style={{ fontSize: 36, fontWeight: 900, color: '#C8A96E', marginBottom: 4 }}>
+        <div style={{ fontSize: 12, color: 'var(--t3)', marginBottom: 8 }}>موجودی کیف پول</div>
+        <div style={{ fontSize: 36, fontWeight: 900, color: 'var(--gold)', marginBottom: 4 }}>
           {(balance / 1000000).toFixed(1)} <span style={{ fontSize: 16, fontWeight: 600 }}>میلیون تومان</span>
         </div>
-        <div style={{ fontSize: 12, color: '#505062' }}>
+        <div style={{ fontSize: 12, color: 'var(--t3)' }}>
           حداقل برداشت ۵ میلیون · پرداخت ظرف ۷۲ ساعت
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function StaffWalletPage() {
             <label className="db-label">مبلغ برداشت (تومان) *</label>
             <input className="db-input" type="number" dir="ltr" value={amount}
               onChange={e => setAmount(e.target.value)} placeholder="5000000" />
-            <div style={{ fontSize: 11, color: '#505062', marginTop: 4 }}>
+            <div style={{ fontSize: 11, color: 'var(--t3)', marginTop: 4 }}>
               موجودی: {balance.toLocaleString('fa')} تومان
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function StaffWalletPage() {
             {loading ? 'در حال ثبت...' : 'ثبت درخواست برداشت'}
           </button>
           {balance < 5000000 && (
-            <div style={{ fontSize: 12, color: '#F59E0B', textAlign: 'center' }}>
+            <div style={{ fontSize: 12, color: 'var(--yellow)', textAlign: 'center' }}>
               موجودی کمتر از حداقل برداشت است
             </div>
           )}

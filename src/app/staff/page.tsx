@@ -42,7 +42,7 @@ export default async function StaffDashboardPage() {
         </div>
         <div className="db-stat-card gold">
           <div className="db-stat-icon">◉</div>
-          <div className="db-stat-val" style={{ color: '#F59E0B' }}>{availableProjects}</div>
+          <div className="db-stat-val" style={{ color: 'var(--yellow)' }}>{availableProjects}</div>
           <div className="db-stat-lbl">پروژه موجود</div>
         </div>
         <div className="db-stat-card">
@@ -90,7 +90,7 @@ export default async function StaffDashboardPage() {
                             <div className="db-prog-wrap" style={{ flex: 1 }}>
                               <div className="db-prog-fill" style={{ width: `${pct}%` }} />
                             </div>
-                            <span style={{ fontSize: 10.5, color: '#505062', flexShrink: 0 }}>{pct}٪</span>
+                            <span style={{ fontSize: 10.5, color: 'var(--t3)', flexShrink: 0 }}>{pct}٪</span>
                           </div>
                         </td>
                         <td>
@@ -112,9 +112,9 @@ export default async function StaffDashboardPage() {
           {availableProjects > 0 && (
             <div style={{ background: 'linear-gradient(135deg,rgba(245,158,11,0.1),rgba(245,158,11,0.05))', border: '1px solid rgba(245,158,11,0.25)', borderRadius: 14, padding: '20px' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>◉</div>
-              <div style={{ fontSize: 22, fontWeight: 900, color: '#F59E0B', marginBottom: 4 }}>{availableProjects} پروژه</div>
-              <div style={{ fontSize: 13, color: '#8888A0', marginBottom: 14 }}>منتظر کارمند است</div>
-              <Link href="/staff/projects/available" className="db-btn" style={{ background: '#F59E0B', color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <div style={{ fontSize: 22, fontWeight: 900, color: 'var(--yellow)', marginBottom: 4 }}>{availableProjects} پروژه</div>
+              <div style={{ fontSize: 13, color: 'var(--t2)', marginBottom: 14 }}>منتظر کارمند است</div>
+              <Link href="/staff/projects/available" className="db-btn" style={{ background: 'var(--yellow)', color: '#000', fontSize: 13, fontWeight: 800, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                 مشاهده و دریافت
               </Link>
             </div>
@@ -122,11 +122,11 @@ export default async function StaffDashboardPage() {
 
           {/* Wallet Card */}
           <div style={{ background: 'linear-gradient(135deg,rgba(200,169,110,0.12),rgba(200,169,110,0.04))', border: '1px solid rgba(200,169,110,0.2)', borderRadius: 14, padding: '20px' }}>
-            <div style={{ fontSize: 11, color: '#505062', marginBottom: 6 }}>موجودی کیف پول</div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: '#C8A96E', marginBottom: 4 }}>
+            <div style={{ fontSize: 11, color: 'var(--t3)', marginBottom: 6 }}>موجودی کیف پول</div>
+            <div style={{ fontSize: 28, fontWeight: 900, color: 'var(--gold)', marginBottom: 4 }}>
               {((s?.walletBalance || 0) / 1000000).toFixed(1)}م <span style={{ fontSize: 13, fontWeight: 500 }}>تومان</span>
             </div>
-            <div style={{ fontSize: 11.5, color: '#505062', marginBottom: 14 }}>امتیاز: {s?.rating || 5}/5 · {s?.totalTasksCompleted || 0} تسک کامل</div>
+            <div style={{ fontSize: 11.5, color: 'var(--t3)', marginBottom: 14 }}>امتیاز: {s?.rating || 5}/5 · {s?.totalTasksCompleted || 0} تسک کامل</div>
             <Link href="/staff/wallet" className="db-btn db-btn-gold" style={{ fontSize: 12, padding: '8px 18px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               درخواست برداشت
             </Link>

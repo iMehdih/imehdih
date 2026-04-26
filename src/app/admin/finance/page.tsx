@@ -35,7 +35,7 @@ export default function AdminFinancePage() {
 
   if (loading) return (
     <div className="admin-page">
-      <div style={{ textAlign: 'center', padding: '60px', color: '#505062' }}>در حال بارگذاری...</div>
+      <div style={{ textAlign: 'center', padding: '60px', color: 'var(--t3)' }}>در حال بارگذاری...</div>
     </div>
   )
 
@@ -71,7 +71,7 @@ export default function AdminFinancePage() {
         <div className="admin-stat-card">
           <div className="admin-stat-icon-wrap warn">▼</div>
           <div className="admin-stat-label">هزینه کل</div>
-          <div className="admin-stat-val" style={{ color: '#EF4444' }}>{(summary.expense / 1000000).toFixed(1)}م</div>
+          <div className="admin-stat-val" style={{ color: 'var(--red)' }}>{(summary.expense / 1000000).toFixed(1)}م</div>
           <div className={`admin-stat-trend ${summary.expenseGrowth <= 0 ? 'up' : 'down'}`}>
             {summary.expenseGrowth >= 0 ? '▲' : '▼'} {Math.abs(summary.expenseGrowth)}٪
           </div>
@@ -79,7 +79,7 @@ export default function AdminFinancePage() {
         <div className="admin-stat-card">
           <div className="admin-stat-icon-wrap gold">$</div>
           <div className="admin-stat-label">سود خالص</div>
-          <div className="admin-stat-val" style={{ color: summary.profit >= 0 ? '#22C55E' : '#EF4444' }}>
+          <div className="admin-stat-val" style={{ color: summary.profit >= 0 ? 'var(--green)' : 'var(--red)' }}>
             {(summary.profit / 1000000).toFixed(1)}م
           </div>
           <div className={`admin-stat-trend ${summary.profitGrowth >= 0 ? 'up' : 'down'}`}>
@@ -90,7 +90,7 @@ export default function AdminFinancePage() {
           <div className="admin-stat-icon-wrap">◈</div>
           <div className="admin-stat-label">تعداد سفارش</div>
           <div className="admin-stat-val">{summary.orderCount}</div>
-          <div className="admin-stat-trend" style={{ color: '#505062' }}>
+          <div className="admin-stat-trend" style={{ color: 'var(--t3)' }}>
             میانگین {summary.orderCount > 0 ? Math.round(summary.revenue / summary.orderCount / 1000) : 0}ک تومان
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function AdminFinancePage() {
           <div className="admin-card" style={{ marginBottom: 14 }}>
             <div className="admin-card-head">
               <div className="admin-card-title">نمودار درآمد روزانه</div>
-              <span style={{ fontSize: 11, color: '#505062' }}>{(dailyRevenue || []).length} روز</span>
+              <span style={{ fontSize: 11, color: 'var(--t3)' }}>{(dailyRevenue || []).length} روز</span>
             </div>
             <div style={{ padding: '16px 18px' }}>
               <div style={{ display: 'flex', alignItems: 'flex-end', gap: 2, height: 100 }}>
@@ -123,7 +123,7 @@ export default function AdminFinancePage() {
                 ))}
               </div>
               {(dailyRevenue || []).length === 0 && (
-                <div style={{ textAlign: 'center', color: '#505062', fontSize: 12, padding: '30px 0' }}>داده‌ای وجود ندارد</div>
+                <div style={{ textAlign: 'center', color: 'var(--t3)', fontSize: 12, padding: '30px 0' }}>داده‌ای وجود ندارد</div>
               )}
             </div>
           </div>
@@ -135,25 +135,25 @@ export default function AdminFinancePage() {
             </div>
             <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
               {(revenueByProduct || []).length === 0 ? (
-                <div style={{ color: '#505062', fontSize: 12, textAlign: 'center', padding: '16px 0' }}>داده‌ای وجود ندارد</div>
+                <div style={{ color: 'var(--t3)', fontSize: 12, textAlign: 'center', padding: '16px 0' }}>داده‌ای وجود ندارد</div>
               ) : (revenueByProduct || []).map((item: any) => {
                 const pct = summary.revenue > 0 ? Math.round((item.revenue / summary.revenue) * 100) : 0
                 return (
                   <div key={item._id}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5 }}>
-                      <span style={{ fontSize: 12.5, color: '#8888A0' }}>
+                      <span style={{ fontSize: 12.5, color: 'var(--t2)' }}>
                         {productTypeLabels[item._id] || item._id}
-                        <span style={{ fontSize: 10.5, marginRight: 6, color: '#505062' }}>({item.count} فروش)</span>
+                        <span style={{ fontSize: 10.5, marginRight: 6, color: 'var(--t3)' }}>({item.count} فروش)</span>
                       </span>
                       <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                        <span style={{ fontSize: 10.5, color: '#505062' }}>{pct}٪</span>
-                        <span style={{ fontSize: 13, fontWeight: 800, color: '#C8A96E' }}>
+                        <span style={{ fontSize: 10.5, color: 'var(--t3)' }}>{pct}٪</span>
+                        <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--gold)' }}>
                           {(item.revenue / 1000000).toFixed(1)}م
                         </span>
                       </div>
                     </div>
-                    <div style={{ background: '#1C1C2A', borderRadius: 100, height: 5, overflow: 'hidden' }}>
-                      <div style={{ width: `${pct}%`, height: '100%', borderRadius: 100, background: 'linear-gradient(90deg,#A8843A,#C8A96E)' }} />
+                    <div style={{ background: 'var(--b3)', borderRadius: 100, height: 5, overflow: 'hidden' }}>
+                      <div style={{ width: `${pct}%`, height: '100%', borderRadius: 100, background: 'linear-gradient(90deg,var(--gold3),var(--gold))' }} />
                     </div>
                   </div>
                 )
@@ -172,18 +172,18 @@ export default function AdminFinancePage() {
             </div>
             <div style={{ padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               {Object.entries(expenseByCategory || {}).length === 0 ? (
-                <div style={{ color: '#505062', fontSize: 12, textAlign: 'center', padding: '12px 0' }}>هزینه‌ای ثبت نشده</div>
+                <div style={{ color: 'var(--t3)', fontSize: 12, textAlign: 'center', padding: '12px 0' }}>هزینه‌ای ثبت نشده</div>
               ) : Object.entries(expenseByCategory || {}).map(([cat, amount]: [string, any]) => (
                 <div key={cat} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: 12.5, color: '#8888A0' }}>{categoryLabels[cat] || cat}</span>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: '#EF4444' }}>
+                  <span style={{ fontSize: 12.5, color: 'var(--t2)' }}>{categoryLabels[cat] || cat}</span>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--red)' }}>
                     {(amount / 1000000).toFixed(1)}م
                   </span>
                 </div>
               ))}
               <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 10, display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ fontSize: 13, fontWeight: 800 }}>جمع</span>
-                <span style={{ fontSize: 14, fontWeight: 900, color: '#EF4444' }}>
+                <span style={{ fontSize: 14, fontWeight: 900, color: 'var(--red)' }}>
                   {(summary.expense / 1000000).toFixed(1)}م
                 </span>
               </div>
@@ -197,10 +197,10 @@ export default function AdminFinancePage() {
               <Link href="/admin/expenses/new" className="admin-btn admin-btn-gold" style={{ justifyContent: 'center', fontSize: 13 }}>
                 + ثبت هزینه جدید
               </Link>
-              <Link href="/admin/wallet" className="admin-btn" style={{ justifyContent: 'center', fontSize: 13, background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: '#8888A0', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Link href="/admin/wallet" className="admin-btn" style={{ justifyContent: 'center', fontSize: 13, background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: 'var(--t2)', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
                 مدیریت کیف پول کارمندان
               </Link>
-              <Link href="/admin/invoices" className="admin-btn" style={{ justifyContent: 'center', fontSize: 13, background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: '#8888A0', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+              <Link href="/admin/invoices" className="admin-btn" style={{ justifyContent: 'center', fontSize: 13, background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: 'var(--t2)', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
                 مشاهده فاکتورها
               </Link>
             </div>
@@ -217,17 +217,17 @@ export default function AdminFinancePage() {
                 <div key={e._id} style={{ padding: '10px 16px', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
                     <div style={{ fontSize: 12.5, fontWeight: 700 }}>{e.title}</div>
-                    <div style={{ fontSize: 10.5, color: '#505062' }}>
+                    <div style={{ fontSize: 10.5, color: 'var(--t3)' }}>
                       {categoryLabels[e.category]} · {new Date(e.date).toLocaleDateString('fa-IR')}
                     </div>
                   </div>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: '#EF4444' }}>
+                  <span style={{ fontSize: 13, fontWeight: 800, color: 'var(--red)' }}>
                     {(e.amount / 1000).toFixed(0)}ک
                   </span>
                 </div>
               ))}
               {(recentExpenses || []).length === 0 && (
-                <div style={{ padding: '20px', textAlign: 'center', color: '#505062', fontSize: 12 }}>هزینه‌ای ثبت نشده</div>
+                <div style={{ padding: '20px', textAlign: 'center', color: 'var(--t3)', fontSize: 12 }}>هزینه‌ای ثبت نشده</div>
               )}
             </div>
           </div>

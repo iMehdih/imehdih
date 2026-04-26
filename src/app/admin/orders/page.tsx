@@ -76,13 +76,13 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
                     <td className="admin-table-mono">{o.orderNumber}</td>
                     <td>
                       <div style={{fontWeight:700}}>{user?.firstName ? `${user.firstName} ${user.lastName}` : '—'}</div>
-                      <div style={{fontSize:10.5,color:'#505062'}}>{user?.mobile}</div>
+                      <div style={{fontSize:10.5,color:'var(--t3)'}}>{user?.mobile}</div>
                     </td>
                     <td>
                       <div>{o.items[0]?.title}</div>
-                      {o.items.length > 1 && <div style={{fontSize:10.5,color:'#505062'}}>+{o.items.length-1} مورد دیگر</div>}
+                      {o.items.length > 1 && <div style={{fontSize:10.5,color:'var(--t3)'}}>+{o.items.length-1} مورد دیگر</div>}
                     </td>
-                    <td style={{color:'#C8A96E',fontWeight:800}}>{o.finalAmount.toLocaleString('fa')} ت</td>
+                    <td style={{color:'var(--gold)',fontWeight:800}}>{o.finalAmount.toLocaleString('fa')} ت</td>
                     <td style={{fontSize:11.5}}>{new Date(o.createdAt).toLocaleDateString('fa-IR')}</td>
                     <td><span className={`admin-badge admin-badge-${st.cls}`}>{st.label}</span></td>
                     <td>
@@ -99,8 +99,8 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
             {Array.from({length:totalPages},(_,i)=>i+1).map(p => (
               <a key={p} href={`/admin/orders?${status?`status=${status}&`:''}page=${p}`}
                 style={{padding:'5px 10px',borderRadius:7,fontSize:12,fontWeight:700,textDecoration:'none',
-                  background:p===page?'#C8A96E':'#141420',color:p===page?'#000':'#8888A0',
-                  border:`1px solid ${p===page?'#C8A96E':'rgba(255,255,255,0.06)'}`}}>
+                  background:p===page?'var(--gold)':'var(--b2)',color:p===page?'#000':'var(--t2)',
+                  border:`1px solid ${p===page?'var(--gold)':'rgba(255,255,255,0.06)'}`}}>
                 {p}
               </a>
             ))}

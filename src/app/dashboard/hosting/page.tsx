@@ -75,7 +75,7 @@ export default async function CustomerHostingPage() {
                     <div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11.5, marginBottom: 5 }}>
                         <span style={{ color: 'var(--t3)' }}>اعتبار باقی‌مانده</span>
-                        <span style={{ color: daysLeft <= 7 ? '#EF4444' : daysLeft <= 30 ? '#F59E0B' : '#22C55E', fontWeight: 700 }}>
+                        <span style={{ color: daysLeft <= 7 ? 'var(--red)' : daysLeft <= 30 ? 'var(--yellow)' : 'var(--green)', fontWeight: 700 }}>
                           {daysLeft > 0 ? `${daysLeft} روز` : 'منقضی شده'}
                         </span>
                       </div>

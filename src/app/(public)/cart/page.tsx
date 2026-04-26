@@ -91,7 +91,7 @@ export default function CartPage() {
   return (
     <div className="container" style={{ padding: '32px 28px' }}>
       <h1 style={{ fontSize: 24, fontWeight: 900, marginBottom: 24 }}>سبد خرید</h1>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 24, alignItems: 'start' }}>
+      <div className="cart-grid">
 
         {/* Items */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -107,7 +107,7 @@ export default function CartPage() {
                   {item.price === 0 ? 'رایگان' : `${item.price.toLocaleString('fa')} ت`}
                 </div>
                 <button onClick={() => removeItem(item.productId)}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#EF4444', fontSize: 12, fontFamily: 'inherit', marginTop: 4 }}>
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--red)', fontSize: 12, fontFamily: 'inherit', marginTop: 4 }}>
                   حذف
                 </button>
               </div>
@@ -128,7 +128,7 @@ export default function CartPage() {
               <button onClick={applyCoupon} className="site-btn site-btn-outline" style={{ fontSize: 13 }}>اعمال</button>
             </div>
             {couponMsg && (
-              <div style={{ fontSize: 12.5, marginTop: 8, color: couponMsg.startsWith('✓') ? '#22C55E' : '#EF4444' }}>
+              <div style={{ fontSize: 12.5, marginTop: 8, color: couponMsg.startsWith('✓') ? 'var(--green)' : 'var(--red)' }}>
                 {couponMsg}
               </div>
             )}
@@ -147,7 +147,7 @@ export default function CartPage() {
               {discount > 0 && (
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
                   <span style={{ color: 'var(--t2)' }}>تخفیف کوپن</span>
-                  <span style={{ color: '#22C55E' }}>-{discount.toLocaleString('fa')} ت</span>
+                  <span style={{ color: 'var(--green)' }}>-{discount.toLocaleString('fa')} ت</span>
                 </div>
               )}
               <div style={{ borderTop: '1px solid var(--bd)', paddingTop: 12, display: 'flex', justifyContent: 'space-between', fontSize: 17, fontWeight: 900 }}>
@@ -160,7 +160,7 @@ export default function CartPage() {
                 {loading ? 'در حال پردازش...' : '💳 پرداخت آنلاین'}
               </button>
               <div style={{ fontSize: 12, color: 'var(--t3)', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
-                <span style={{ color: '#22C55E' }}>🔒</span>
+                <span style={{ color: 'var(--green)' }}>🔒</span>
                 پرداخت امن از طریق زرین‌پال
               </div>
             </div>
@@ -169,7 +169,7 @@ export default function CartPage() {
           <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 6 }}>
             {['دانلود فوری بعد از پرداخت', 'ضمانت بازگشت وجه', 'فاکتور رسمی'].map(item => (
               <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 7, fontSize: 12.5, color: 'var(--t2)' }}>
-                <span style={{ color: '#22C55E' }}>✓</span>{item}
+                <span style={{ color: 'var(--green)' }}>✓</span>{item}
               </div>
             ))}
           </div>

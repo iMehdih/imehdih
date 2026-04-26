@@ -62,7 +62,7 @@ export default async function CustomerDomainsPage() {
                       <td style={{ fontSize: 12 }}>{d.registrar === 'farasoo' ? 'فراسو' : 'ایران‌سرور'}</td>
                       <td>
                         <div style={{ fontSize: 12 }}>{new Date(d.expiresAt).toLocaleDateString('fa-IR')}</div>
-                        <div style={{ fontSize: 10.5, color: daysLeft <= 30 ? '#F59E0B' : 'var(--t3)' }}>
+                        <div style={{ fontSize: 10.5, color: daysLeft <= 30 ? 'var(--yellow)' : 'var(--t3)' }}>
                           {daysLeft > 0 ? `${daysLeft} روز مانده` : 'منقضی'}
                         </div>
                       </td>

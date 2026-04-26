@@ -47,11 +47,11 @@ export default function NewExpensePage() {
         </div>
         <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <label className="admin-label">عنوان <span style={{ color: '#EF4444' }}>*</span></label>
+            <label className="admin-label">عنوان <span style={{ color: 'var(--red)' }}>*</span></label>
             <input className="admin-input" value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="مثال: اشتراک لیارا فروردین" />
           </div>
           <div>
-            <label className="admin-label">مبلغ (تومان) <span style={{ color: '#EF4444' }}>*</span></label>
+            <label className="admin-label">مبلغ (تومان) <span style={{ color: 'var(--red)' }}>*</span></label>
             <input className="admin-input" type="number" dir="ltr" value={form.amount} onChange={e => setForm(f => ({ ...f, amount: e.target.value }))} placeholder="800000" />
           </div>
           <div>
@@ -65,7 +65,7 @@ export default function NewExpensePage() {
             <div style={{ display: 'flex', gap: 6 }}>
               {[{ val: 'manual', label: 'دستی' }, { val: 'offline', label: 'آفلاین (رسید کاغذی)' }].map(t => (
                 <button key={t.val} type="button" onClick={() => setForm(f => ({ ...f, type: t.val }))}
-                  style={{ padding: '7px 16px', borderRadius: 8, fontSize: 12.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', background: form.type === t.val ? '#C8A96E' : '#141420', color: form.type === t.val ? '#000' : '#8888A0', border: `1px solid ${form.type === t.val ? '#C8A96E' : 'rgba(255,255,255,0.06)'}` }}>
+                  style={{ padding: '7px 16px', borderRadius: 8, fontSize: 12.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', background: form.type === t.val ? 'var(--gold)' : 'var(--b2)', color: form.type === t.val ? '#000' : 'var(--t2)', border: `1px solid ${form.type === t.val ? 'var(--gold)' : 'rgba(255,255,255,0.06)'}` }}>
                   {t.label}
                 </button>
               ))}

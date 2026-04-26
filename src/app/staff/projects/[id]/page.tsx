@@ -33,15 +33,15 @@ export default async function StaffProjectDetailPage({ params }: { params: Promi
       {/* Header */}
       <div style={{ background: 'var(--b1)', border: '1px solid var(--bd)', borderRadius: 14, padding: '18px 20px', marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-          <Link href="/staff/projects" style={{ color: '#505062', fontSize: 12, textDecoration: 'none' }}>← بازگشت</Link>
-          <span style={{ color: '#505062' }}>·</span>
+          <Link href="/staff/projects" style={{ color: 'var(--t3)', fontSize: 12, textDecoration: 'none' }}>← بازگشت</Link>
+          <span style={{ color: 'var(--t3)' }}>·</span>
           <span className={`db-badge ${p.status === 'completed' ? 'db-badge-green' : 'db-badge-blue'}`}>
             {p.status === 'completed' ? 'تکمیل شده' : 'در حال انجام'}
           </span>
         </div>
         <div style={{ fontSize: 20, fontWeight: 900, marginBottom: 8 }}>{p.title}</div>
-        <div style={{ fontSize: 12.5, color: '#505062' }}>
-          مشتری: <strong style={{ color: '#EEEEF2' }}>
+        <div style={{ fontSize: 12.5, color: 'var(--t3)' }}>
+          مشتری: <strong style={{ color: 'var(--t)' }}>
             {p.customerId?.firstName ? `${p.customerId.firstName} ${p.customerId.lastName}` : p.customerId?.mobile || '—'}
           </strong>
         </div>

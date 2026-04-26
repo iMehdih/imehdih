@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/auth/jwt'
 import StaffSidebar from '@/components/staff/StaffSidebar'
 import StaffTopbar from '@/components/staff/StaffTopbar'
+import MobileMenu from '@/components/ui/MobileMenu'
 
 export default async function StaffLayout({ children }: { children: React.ReactNode }) {
   const cookieStore = await cookies()
@@ -13,12 +14,13 @@ export default async function StaffLayout({ children }: { children: React.ReactN
   if (!payload || payload.role !== 'staff') redirect('/auth/login')
 
   return (
-    <div className="dashboard-root">
+    <div className="db-root">
       <StaffSidebar staffId={payload.userId} />
-      <div className="dashboard-main">
+      <div className="db-main">
         <StaffTopbar />
-        <main className="dashboard-content">{children}</main>
+        <main className="db-content">{children}</main>
       </div>
+      <MobileMenu />
     </div>
   )
 }

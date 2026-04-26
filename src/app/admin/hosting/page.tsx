@@ -35,11 +35,11 @@ export default async function AdminHostingPage() {
       {/* Stats */}
       <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
         <div style={{ padding: '16px 20px', background: 'var(--b1)', border: '1px solid var(--bd)', borderRadius: 12, minWidth: 120 }}>
-          <div style={{ fontSize: 24, fontWeight: 900, color: '#C8A96E' }}>{active}</div>
+          <div style={{ fontSize: 24, fontWeight: 900, color: 'var(--gold)' }}>{active}</div>
           <div style={{ fontSize: 11.5, color: 'var(--t3)' }}>هاست فعال</div>
         </div>
         <div style={{ padding: '16px 20px', background: 'var(--b1)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: 12, minWidth: 120 }}>
-          <div style={{ fontSize: 24, fontWeight: 900, color: '#F59E0B' }}>{pending}</div>
+          <div style={{ fontSize: 24, fontWeight: 900, color: 'var(--yellow)' }}>{pending}</div>
           <div style={{ fontSize: 11.5, color: 'var(--t3)' }}>در انتظار راه‌اندازی</div>
         </div>
       </div>
@@ -73,7 +73,7 @@ export default async function AdminHostingPage() {
                     <td style={{ fontSize: 12 }}>{h.plan}</td>
                     <td>
                       <div style={{ fontSize: 12 }}>{new Date(h.expiresAt).toLocaleDateString('fa-IR')}</div>
-                      <div style={{ fontSize: 10.5, color: daysLeft <= 7 ? '#EF4444' : daysLeft <= 30 ? '#F59E0B' : 'var(--t3)' }}>
+                      <div style={{ fontSize: 10.5, color: daysLeft <= 7 ? 'var(--red)' : daysLeft <= 30 ? 'var(--yellow)' : 'var(--t3)' }}>
                         {daysLeft > 0 ? `${daysLeft} روز` : 'منقضی'}
                       </div>
                     </td>
