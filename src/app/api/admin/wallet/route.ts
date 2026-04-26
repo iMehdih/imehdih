@@ -6,6 +6,7 @@ import WalletTransaction from '@/models/WalletTransaction'
 import Expense from '@/models/Expense'
 import { requireRole } from '@/lib/auth/middleware'
 import { notify } from '@/lib/utils/notify'
+import { writeAuditLog } from '@/lib/utils/audit'
 import { z } from 'zod'
 
 // GET — لیست کارمندان + موجودی + درخواست‌های برداشت
@@ -78,10 +79,15 @@ export async function POST(req: NextRequest) {
         await notify({
           userId: staff._id.toString(),
           title: 'واریز حقوق',
-          content: `حقوق ${(staff.salary / 1000000).toFixed(1)} میلیون تومان به کیف پول شما واریز شد.`,
+          content: `حقوق ${((staff.salary ?? 0) / 1000000).toFixed(1)} میلیون تومان به کیف پول شما واریز شد.`,
           type: 'payment',
         })
       }
+      await writeAuditLog({
+        userId: auth.userId, userRole: auth.role,
+        action: 'pay_salary_batch', entity: 'wallet',
+        after: { staffCount: staffList.length }, req,
+      })
       return NextResponse.json({ success: true, message: `حقوق ${staffList.length} کارمند پرداخت شد` })
     }
 
@@ -102,6 +108,11 @@ export async function POST(req: NextRequest) {
         content: `درخواست برداشت ${(tx.amount / 1000000).toFixed(1)} میلیون تومان تأیید و پرداخت شد.`,
         type: 'payment',
       })
+      await writeAuditLog({
+        userId: auth.userId, userRole: auth.role,
+        action: 'approve_withdrawal', entity: 'wallet_transaction',
+        entityId: transactionId, after: { amount: tx.amount, staffId: staff._id }, req,
+      })
       return NextResponse.json({ success: true })
     }
 
@@ -115,6 +126,11 @@ export async function POST(req: NextRequest) {
           title: 'برداشت رد شد',
           content: 'درخواست برداشت شما رد شد. برای اطلاعات بیشتر با ادمین تماس بگیرید.',
           type: 'system',
+        })
+        await writeAuditLog({
+          userId: auth.userId, userRole: auth.role,
+          action: 'reject_withdrawal', entity: 'wallet_transaction',
+          entityId: transactionId, after: { staffId: (tx.staffId as any)._id }, req,
         })
       }
       return NextResponse.json({ success: true })

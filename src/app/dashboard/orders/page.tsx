@@ -58,7 +58,7 @@ export default async function OrdersPage({ searchParams }: { searchParams: Promi
           <div className="db-empty">
             <div className="db-empty-icon">◈</div>
             <div className="db-empty-text">هنوز سفارشی ثبت نکرده‌اید</div>
-            <a href="/" className="db-btn db-btn-gold">مشاهده محصولات</a>
+            <Link href="/" className="db-btn db-btn-gold">مشاهده محصولات</Link>
           </div>
         ) : (
           <div className="db-table-wrap">

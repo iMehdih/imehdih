@@ -1,4 +1,5 @@
 // src/app/admin/tickets/[id]/page.tsx
+import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/auth/jwt'
@@ -92,9 +93,9 @@ export default async function AdminTicketDetailPage({
   return (
     <div className="admin-page">
       {/* Back */}
-      <a href="/admin/tickets" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12.5, color: '#8888A0', marginBottom: 16, textDecoration: 'none' }}>
+      <Link href="/admin/tickets" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12.5, color: '#8888A0', marginBottom: 16, textDecoration: 'none' }}>
         ← بازگشت به لیست
-      </a>
+      </Link>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 16, alignItems: 'start' }}>
 

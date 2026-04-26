@@ -78,7 +78,7 @@ export default function AdminSidebar() {
           <div key={section.label}>
             <div className="admin-sb-section">{section.label}</div>
             {section.items.map(item => {
-              const isActive = item.exact
+              const isActive = ('exact' in item && item.exact)
                 ? pathname === item.href
                 : pathname.startsWith(item.href)
               return (

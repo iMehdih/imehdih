@@ -42,7 +42,7 @@ export interface IUserDocument extends Document {
 }
 
 const UserSchema = new Schema<IUserDocument>({
-  mobile: { type: String, required: true, unique: true, index: true },
+  mobile: { type: String, required: true, unique: true },
   role: { type: String, enum: ['customer', 'staff', 'admin'], default: 'customer' },
   firstName: String,
   lastName: String,

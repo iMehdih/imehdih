@@ -2,6 +2,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface Field {
   name: string
@@ -377,9 +378,9 @@ export default function TemplateBuilder({ products, initialData }: Props) {
           <button onClick={handleSubmit} disabled={loading} className="admin-btn admin-btn-gold" style={{ width: '100%', justifyContent: 'center', fontSize: 14, padding: '13px' }}>
             {loading ? 'در حال ذخیره...' : initialData ? 'ذخیره تغییرات' : '+ ذخیره Template'}
           </button>
-          <a href="/admin/process-engine" className="admin-btn" style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '11px', background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: '#8888A0', textDecoration: 'none', display: 'flex', alignItems: 'center', marginTop: 8 }}>
+          <Link href="/admin/process-engine" className="admin-btn" style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '11px', background: 'transparent', border: '1px solid rgba(255,255,255,0.06)', color: '#8888A0', textDecoration: 'none', display: 'flex', alignItems: 'center', marginTop: 8 }}>
             انصراف
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { verifyToken } from '@/lib/auth/jwt'
 import { connectDB } from '@/lib/db/mongoose'
 import Project from '@/models/Project'
 import StaffTaskManager from '@/components/staff/StaffTaskManager'
+import Link from 'next/link'
 
 export default async function StaffProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const cookieStore = await cookies()
@@ -32,7 +33,7 @@ export default async function StaffProjectDetailPage({ params }: { params: Promi
       {/* Header */}
       <div style={{ background: 'var(--b1)', border: '1px solid var(--bd)', borderRadius: 14, padding: '18px 20px', marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-          <a href="/staff/projects" style={{ color: '#505062', fontSize: 12, textDecoration: 'none' }}>← بازگشت</a>
+          <Link href="/staff/projects" style={{ color: '#505062', fontSize: 12, textDecoration: 'none' }}>← بازگشت</Link>
           <span style={{ color: '#505062' }}>·</span>
           <span className={`db-badge ${p.status === 'completed' ? 'db-badge-green' : 'db-badge-blue'}`}>
             {p.status === 'completed' ? 'تکمیل شده' : 'در حال انجام'}

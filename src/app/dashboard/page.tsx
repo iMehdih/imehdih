@@ -109,7 +109,7 @@ export default async function DashboardPage() {
             <div className="db-empty">
               <div className="db-empty-icon">◈</div>
               <div className="db-empty-text">هنوز سفارشی ثبت نکرده‌اید</div>
-              <a href="/" className="db-btn db-btn-gold" style={{ marginTop: 4 }}>مشاهده محصولات</a>
+              <Link href="/" className="db-btn db-btn-gold" style={{ marginTop: 4 }}>مشاهده محصولات</Link>
             </div>
           ) : (
             <div className="db-table-wrap">

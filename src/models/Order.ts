@@ -49,7 +49,7 @@ const OrderSchema = new Schema<IOrderDocument>({
 }, { timestamps: true })
 
 OrderSchema.index({ userId: 1, status: 1 })
-OrderSchema.index({ orderNumber: 1 })
+// orderNumber index is handled by unique: true above — no duplicate
 OrderSchema.index({ createdAt: -1 })
 
 const Order: Model<IOrderDocument> =

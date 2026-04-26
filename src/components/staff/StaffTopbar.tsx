@@ -1,6 +1,7 @@
 // src/components/staff/StaffTopbar.tsx
 'use client'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 const titles: Record<string, string> = {
   '/staff': 'داشبورد کارمند',
   '/staff/projects/available': 'پروژه‌های موجود',
@@ -19,7 +20,7 @@ export default function StaffTopbar() {
     <header className="db-topbar">
       <div className="db-topbar-title">{title}</div>
       <div className="db-topbar-acts">
-        <a href="/staff/projects/available" className="db-topbar-btn">+ گرفتن پروژه</a>
+        <Link href="/staff/projects/available" className="db-topbar-btn">+ گرفتن پروژه</Link>
       </div>
     </header>
   )

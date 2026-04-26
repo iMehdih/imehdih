@@ -4,6 +4,7 @@ import { connectDB } from '@/lib/db/mongoose'
 import User from '@/models/User'
 import { isOTPValid } from '@/lib/auth/otp'
 import { signToken } from '@/lib/auth/jwt'
+import { writeAuditLog } from '@/lib/utils/audit'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -43,9 +44,14 @@ export async function POST(req: NextRequest) {
     cookieStore.set('hp_token', token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      sameSite: 'strict',
       maxAge: 7 * 24 * 60 * 60,
       path: '/',
+    })
+
+    await writeAuditLog({
+      userId: user._id.toString(), userRole: user.role,
+      action: 'login', entity: 'user', entityId: user._id.toString(), req,
     })
 
     return NextResponse.json({

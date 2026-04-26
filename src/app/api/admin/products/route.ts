@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
 
     const filter: Record<string, unknown> = {}
     if (type) filter.type = type
-    if (search) filter.title = { $regex: search, $options: 'i' }
+    if (search) filter.title = { $regex: search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), $options: 'i' }
 
     const [items, total] = await Promise.all([
       Product.find(filter).sort('-createdAt').skip((page - 1) * limit).limit(limit),

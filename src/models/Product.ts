@@ -57,7 +57,7 @@ const ProductSchema = new Schema<IProductDocument>({
 }, { timestamps: true })
 
 ProductSchema.index({ type: 1, isActive: 1 })
-ProductSchema.index({ slug: 1 })
+// slug index is handled by unique: true above — no duplicate
 ProductSchema.index({ rating: -1 })
 
 const Product: Model<IProductDocument> =

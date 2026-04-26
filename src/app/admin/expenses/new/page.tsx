@@ -2,6 +2,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const categories = [
   { val: 'salary', label: 'حقوق' },
@@ -42,7 +43,7 @@ export default function NewExpensePage() {
       <div className="admin-card" style={{ maxWidth: 560 }}>
         <div className="admin-card-head">
           <div className="admin-card-title">ثبت هزینه جدید</div>
-          <a href="/admin/expenses" className="admin-card-link">← بازگشت</a>
+          <Link href="/admin/expenses" className="admin-card-link">← بازگشت</Link>
         </div>
         <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>

@@ -34,6 +34,12 @@ export async function GET(req: NextRequest) {
       return NextResponse.redirect(`${appUrl}/dashboard/orders?payment=already_paid&order=${order.orderNumber}`)
     }
 
+    // Verify the authority matches what was stored when payment was initiated
+    if (order.paymentRef && order.paymentRef !== authority) {
+      console.error(`Authority mismatch for order ${orderId}: expected ${order.paymentRef}, got ${authority}`)
+      return NextResponse.redirect(`${appUrl}/dashboard/orders?payment=error&reason=authority_mismatch`)
+    }
+
     const verification = await verifyPayment(authority, order.finalAmount)
     if (!verification.success) {
       return NextResponse.redirect(`${appUrl}/dashboard/orders?payment=failed&order=${order.orderNumber}`)

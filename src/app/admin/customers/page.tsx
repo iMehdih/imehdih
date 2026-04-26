@@ -1,4 +1,5 @@
 // src/app/admin/customers/page.tsx
+import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/auth/jwt'
@@ -52,7 +53,7 @@ export default async function AdminCustomersPage({ searchParams }: { searchParam
           <input className="admin-input" name="search" defaultValue={search}
             placeholder="جستجو با نام یا موبایل..." style={{maxWidth:320}} />
           <button type="submit" className="admin-btn admin-btn-gold">جستجو</button>
-          {search && <a href="/admin/customers" className="admin-btn" style={{background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'#8888A0',textDecoration:'none',display:'flex',alignItems:'center'}}>پاک کردن</a>}
+          {search && <Link href="/admin/customers" className="admin-btn" style={{background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'#8888A0',textDecoration:'none',display:'flex',alignItems:'center'}}>پاک کردن</Link>}
         </div>
       </form>
 

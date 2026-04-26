@@ -211,9 +211,9 @@ export default function StaffTaskManager({ project, staffId }: Props) {
                             disabled={isDone} />
                         ) : field.type === 'image' || field.type === 'file' ? (
                           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                            {task.fieldValues?.[field.name] && (
+                            {!!task.fieldValues?.[field.name] && (
                               <div style={{ fontSize: 12, color: '#22C55E' }}>
-                                ✓ {field.type === 'image' ? 'تصویر' : 'فایل'} آپلود شده: {String(task.fieldValues[field.name])}
+                                ✓ {field.type === 'image' ? 'تصویر' : 'فایل'} آپلود شده: {String(task.fieldValues?.[field.name] ?? '')}
                               </div>
                             )}
                             <input type="url" className="db-input" dir="ltr" placeholder={field.type === 'image' ? 'لینک تصویر...' : 'لینک فایل...'}

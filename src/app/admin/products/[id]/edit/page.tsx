@@ -1,4 +1,5 @@
 // src/app/admin/products/[id]/edit/page.tsx
+import Link from 'next/link'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/auth/jwt'
@@ -22,7 +23,7 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
       <div className="admin-card">
         <div className="admin-card-head">
           <div className="admin-card-title">ویرایش: {product.title}</div>
-          <a href="/admin/products" className="admin-card-link">← بازگشت</a>
+          <Link href="/admin/products" className="admin-card-link">← بازگشت</Link>
         </div>
         <div style={{ padding: '40px 20px', textAlign: 'center', color: '#505062', fontSize: 13 }}>
           فرم ویرایش در مرحله بعد تکمیل می‌شود.

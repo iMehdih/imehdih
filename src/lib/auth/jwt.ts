@@ -1,8 +1,8 @@
 import { SignJWT, jwtVerify } from 'jose'
 
-const SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'fallback-secret-change-this'
-)
+const jwtSecret = process.env.JWT_SECRET
+if (!jwtSecret) throw new Error('JWT_SECRET environment variable is not set')
+const SECRET = new TextEncoder().encode(jwtSecret)
 const EXPIRES_IN = '7d'
 
 export interface JWTPayload {

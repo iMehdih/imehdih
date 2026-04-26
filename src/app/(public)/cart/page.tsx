@@ -2,6 +2,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 interface CartItem { productId: string; title: string; price: number }
 
@@ -82,7 +83,7 @@ export default function CartPage() {
         <div style={{ fontSize: 48, marginBottom: 16 }}>🛒</div>
         <h2 style={{ fontSize: 22, fontWeight: 900, marginBottom: 10 }}>سبد خرید خالی است</h2>
         <p style={{ fontSize: 14, color: 'var(--t2)', marginBottom: 28 }}>محصول مورد نظر را اضافه کنید</p>
-        <a href="/themes" className="site-btn site-btn-gold" style={{ fontSize: 14 }}>مشاهده محصولات ←</a>
+        <Link href="/themes" className="site-btn site-btn-gold" style={{ fontSize: 14 }}>مشاهده محصولات ←</Link>
       </div>
     )
   }

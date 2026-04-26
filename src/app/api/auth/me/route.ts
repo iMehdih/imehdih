@@ -4,7 +4,7 @@ import User from '@/models/User'
 import { getAuthUser } from '@/lib/auth/middleware'
 
 export async function GET(req: NextRequest) {
-  const authUser = getAuthUser(req)
+  const authUser = await getAuthUser(req)
   if (!authUser) {
     return NextResponse.json({ success: false, error: 'UNAUTHORIZED' }, { status: 401 })
   }

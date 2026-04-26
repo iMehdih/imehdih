@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { connectDB } from '@/lib/db/mongoose'
 import User from '@/models/User'
-import { generateOTP, getOTPExpiry } from '@/lib/auth/otp'
+import { generateOTP, getOTPExpiry, hashOTP } from '@/lib/auth/otp'
 import { sendOTP } from '@/lib/sms/kavenegar'
+import { checkRateLimit } from '@/lib/utils/rateLimit'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -14,15 +15,37 @@ export async function POST(req: NextRequest) {
     const body = await req.json()
     const { mobile } = schema.parse(body)
 
+    // Rate limit: max 3 attempts per 15 minutes per mobile
+    const mobileKey = `otp:mobile:${mobile}`
+    const mobileLimit = await checkRateLimit(mobileKey, 3, 15 * 60)
+    if (!mobileLimit.allowed) {
+      return NextResponse.json(
+        { success: false, error: `تعداد درخواست بیش از حد مجاز. لطفاً ${Math.ceil(mobileLimit.resetInSeconds / 60)} دقیقه دیگر تلاش کنید.` },
+        { status: 429 }
+      )
+    }
+
+    // Rate limit: max 10 attempts per 15 minutes per IP
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || req.headers.get('x-real-ip') || 'unknown'
+    const ipKey = `otp:ip:${ip}`
+    const ipLimit = await checkRateLimit(ipKey, 10, 15 * 60)
+    if (!ipLimit.allowed) {
+      return NextResponse.json(
+        { success: false, error: 'تعداد درخواست از این آدرس بیش از حد مجاز است.' },
+        { status: 429 }
+      )
+    }
+
     await connectDB()
 
     const otp = generateOTP()
+    const otpHash = hashOTP(otp)
     const otpExpires = getOTPExpiry()
 
     await User.findOneAndUpdate(
       { mobile },
-      { 
-        $set: { otp, otpExpires },
+      {
+        $set: { otp: otpHash, otpExpires },
         $setOnInsert: { role: 'customer', isActive: true, isProfileComplete: false, customerScore: 0, isVIP: false }
       },
       { upsert: true, new: true }

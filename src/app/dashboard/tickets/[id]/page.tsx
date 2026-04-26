@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { verifyToken } from '@/lib/auth/jwt'
 import { connectDB } from '@/lib/db/mongoose'
+import Link from 'next/link'
 import Ticket from '@/models/Ticket'
 import TicketChat from '@/components/dashboard/TicketChat'
 
@@ -81,17 +82,17 @@ export default async function TicketDetailPage({
               {t.relatedDomain && <span>دامنه: <strong style={{ color: '#EEEEF2' }}>{t.relatedDomain}</strong></span>}
             </div>
           </div>
-          <a href="/dashboard/tickets" className="db-btn db-btn-outline" style={{ fontSize: 12, padding: '7px 14px' }}>
+          <Link href="/dashboard/tickets" className="db-btn db-btn-outline" style={{ fontSize: 12, padding: '7px 14px' }}>
             ← بازگشت
-          </a>
+          </Link>
         </div>
 
         {isClosed && (
           <div style={{ marginTop: 14, padding: '10px 14px', background: 'rgba(255,255,255,0.03)', borderRadius: 8, fontSize: 12.5, color: '#505062', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span>این تیکت بسته شده. برای پیگیری مجدد تیکت جدید بزنید.</span>
-            <a href="/dashboard/tickets/new" className="db-btn db-btn-gold" style={{ fontSize: 11, padding: '6px 14px' }}>
+            <Link href="/dashboard/tickets/new" className="db-btn db-btn-gold" style={{ fontSize: 11, padding: '6px 14px' }}>
               تیکت جدید
-            </a>
+            </Link>
           </div>
         )}
       </div>

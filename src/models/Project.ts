@@ -17,6 +17,14 @@ export interface IProjectDocument extends Document {
     status: 'pending' | 'unlocked' | 'in_progress' | 'completed'
     assignedTo?: mongoose.Types.ObjectId
     fieldValues: Record<string, unknown>
+    fields?: { name: string; label: string; type: string; required?: boolean; usedInReport?: boolean; reportLabel?: string }[]
+    isBlocking?: boolean
+    isRequired?: boolean
+    recurringType?: string
+    recurringInterval?: number
+    recurringDayOfMonth?: number
+    recurringDayOfWeek?: number
+    order?: number
     startedAt?: Date
     completedAt?: Date
     timeSpentMinutes: number
@@ -47,6 +55,14 @@ const ProjectSchema = new Schema<IProjectDocument>({
     status: { type: String, default: 'pending' },
     assignedTo: { type: Schema.Types.ObjectId, ref: 'User' },
     fieldValues: { type: Schema.Types.Mixed, default: {} },
+    fields: { type: Schema.Types.Mixed },
+    isBlocking: Boolean,
+    isRequired: Boolean,
+    recurringType: String,
+    recurringInterval: Number,
+    recurringDayOfMonth: Number,
+    recurringDayOfWeek: Number,
+    order: Number,
     startedAt: Date,
     completedAt: Date,
     timeSpentMinutes: { type: Number, default: 0 },

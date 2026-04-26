@@ -2,6 +2,7 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const typeOptions = [
   { val: 'theme', label: 'قالب وردپرس' },
@@ -160,9 +161,9 @@ export default function NewProductPage() {
           <button onClick={handleSubmit} disabled={loading} className="admin-btn admin-btn-gold" style={{width:'100%',justifyContent:'center',fontSize:14,padding:'13px'}}>
             {loading ? 'در حال ذخیره...' : '+ ذخیره محصول'}
           </button>
-          <a href="/admin/products" className="admin-btn" style={{width:'100%',justifyContent:'center',fontSize:13,padding:'11px',background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'#8888A0',textDecoration:'none',display:'flex',alignItems:'center'}}>
+          <Link href="/admin/products" className="admin-btn" style={{width:'100%',justifyContent:'center',fontSize:13,padding:'11px',background:'transparent',border:'1px solid rgba(255,255,255,0.06)',color:'#8888A0',textDecoration:'none',display:'flex',alignItems:'center'}}>
             انصراف
-          </a>
+          </Link>
         </div>
       </div>
     </div>
