@@ -1,8 +1,30 @@
 // src/app/(public)/blog/[slug]/page.tsx
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { connectDB } from '@/lib/db/mongoose'
 import Article from '@/models/Article'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  await connectDB()
+  const article = await Article.findOne({ slug, status: 'published' }).select('title excerpt thumbnail seo').lean() as any
+  if (!article) return {}
+  return {
+    title: article.seo?.title || article.title,
+    description: article.seo?.description || article.excerpt,
+    openGraph: {
+      title: article.seo?.title || article.title,
+      description: article.seo?.description || article.excerpt,
+      images: article.thumbnail ? [article.thumbnail] : [],
+      type: 'article',
+    },
+  }
+}
 
 export default async function BlogDetailPage({
   params,

@@ -2,6 +2,19 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── KEYFRAMES ── */
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+@keyframes fadeIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+@keyframes slideUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes spin { to{transform:rotate(360deg)} }
+
+/* ── SPINNER ── */
+.spinner { width:36px; height:36px; border:3px solid var(--bd); border-top-color:var(--gold); border-radius:50%; animation:spin .7s linear infinite; }
+
+/* ── PAGE ENTRANCE ── */
+.db-page { animation:slideUp .2s ease; }
+.container { animation:slideUp .2s ease; }
+
 :root {
   --gold: #C8A96E;
   --gold2: #E2C98C;

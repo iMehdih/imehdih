@@ -5,9 +5,11 @@ import Order from '@/models/Order'
 import Product from '@/models/Product'
 import Coupon from '@/models/Coupon'
 import CouponUse from '@/models/CouponUse'
+import User from '@/models/User'
 import { verifyPayment } from '@/lib/payment/zarinpal'
 import { notify } from '@/lib/utils/notify'
 import { createProjectFromTemplate } from '@/lib/utils/processEngine'
+import { sendOrderConfirmation } from '@/lib/email/mailer'
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -88,6 +90,22 @@ export async function GET(req: NextRequest) {
         await CouponUse.create({ couponId: coupon._id, userId: order.userId, orderId: order._id })
         await Coupon.findByIdAndUpdate(coupon._id, { $inc: { usedCount: 1 } })
       }
+    }
+
+    // ایمیل تأیید سفارش
+    try {
+      const user = await User.findById(order.userId).select('email firstName lastName').lean() as any
+      if (user?.email) {
+        await sendOrderConfirmation({
+          to: user.email,
+          name: `${user.firstName || ''} ${user.lastName || ''}`.trim() || 'کاربر',
+          orderNumber: order.orderNumber,
+          items: order.items.map((i: any) => ({ title: i.title, price: i.discountedPrice || i.price })),
+          total: order.finalAmount,
+        })
+      }
+    } catch (emailErr) {
+      console.error('order email error:', emailErr)
     }
 
     // اعلان مشتری

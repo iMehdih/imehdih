@@ -3,12 +3,28 @@ import type { Metadata } from 'next'
 import './globals.css'
 import ThemeProvider from '@/components/ui/ThemeProvider'
 
+const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://imehdih.ir'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE),
   title: {
     default: 'مهدی حاتم‌پور | مدیر آنلاین کسب‌وکار شما',
     template: '%s | مهدی حاتم‌پور',
   },
   description: 'قالب وردپرس، افزونه، دوره آموزشی، هاست و خدمات تخصصی وردپرس',
+  keywords: ['قالب وردپرس', 'افزونه وردپرس', 'دوره آموزشی', 'هاست', 'مهدی حاتم‌پور'],
+  openGraph: {
+    siteName: 'مهدی حاتم‌پور',
+    locale: 'fa_IR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,5 +1,6 @@
 // src/app/(public)/products/[slug]/page.tsx
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { verifyToken } from '@/lib/auth/jwt'
 import { connectDB } from '@/lib/db/mongoose'
@@ -10,6 +11,27 @@ import AddToCartButton from '@/components/ui/AddToCartButton'
 import ProductGallery from '@/components/ui/ProductGallery'
 import ProductTabs from '@/components/ui/ProductTabs'
 import ProductReviews from '@/components/ui/ProductReviews'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  await connectDB()
+  const p = await Product.findOne({ slug, isActive: true }).select('title shortDescription thumbnail seoTitle seoDescription').lean() as any
+  if (!p) return {}
+  return {
+    title: p.seoTitle || p.title,
+    description: p.seoDescription || p.shortDescription,
+    openGraph: {
+      title: p.seoTitle || p.title,
+      description: p.seoDescription || p.shortDescription,
+      images: p.thumbnail ? [p.thumbnail] : [],
+      type: 'website',
+    },
+  }
+}
 
 const typeLabels: Record<string, string> = {
   theme: 'قالب وردپرس', plugin: 'افزونه وردپرس',

@@ -68,6 +68,9 @@ export default async function DashboardInvoicesPage() {
                   <span style={{ fontSize: 16, fontWeight: 900 }}>
                     {o.finalAmount === 0 ? <span style={{ color: 'var(--green)' }}>رایگان</span> : `${o.finalAmount.toLocaleString('fa')} ت`}
                   </span>
+                  <Link href={`/dashboard/invoices/${o.orderNumber}`} className="site-btn site-btn-outline" style={{ fontSize: 11, padding: '5px 10px' }}>
+                    فاکتور
+                  </Link>
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>

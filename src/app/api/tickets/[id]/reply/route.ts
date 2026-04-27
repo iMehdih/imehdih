@@ -4,6 +4,8 @@ import { connectDB } from '@/lib/db/mongoose'
 import Ticket from '@/models/Ticket'
 import { requireAuth } from '@/lib/auth/middleware'
 import { notify } from '@/lib/utils/notify'
+import { sendTicketReply } from '@/lib/email/mailer'
+import User from '@/models/User'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -77,6 +79,15 @@ export async function POST(
           link: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/tickets/${ticket._id}`,
         },
       })
+      // ایمیل به مشتری
+      try {
+        const customer = await User.findById(ticket.userId).select('email firstName').lean() as any
+        if (customer?.email) {
+          await sendTicketReply({ to: customer.email, name: customer.firstName || 'کاربر', ticketSubject: ticket.title, ticketId: ticket._id.toString() })
+        }
+      } catch (emailErr) {
+        console.error('ticket email error:', emailErr)
+      }
     } else if (ticket.assignedTo) {
       // مشتری پاسخ داد → اعلان به کارمند assigned
       await notify({
