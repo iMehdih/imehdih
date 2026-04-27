@@ -11,6 +11,7 @@ const sections: NavSection[] = [
     items: [
       { href: '/admin/orders', label: 'سفارشات', icon: '◈' },
       { href: '/admin/products', label: 'محصولات', icon: '▣' },
+      { href: '/admin/categories', label: 'دسته‌بندی‌ها', icon: '◇' },
       { href: '/admin/coupons', label: 'کوپن‌ها', icon: '◆' },
     ],
   },
