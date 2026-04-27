@@ -51,5 +51,6 @@ const ArticleSchema = new Schema<IArticleDocument>(
 ArticleSchema.index({ status: 1, publishedAt: -1 })
 ArticleSchema.index({ authorId: 1 })
 ArticleSchema.index({ categoryId: 1 })
+ArticleSchema.index({ title: 'text', excerpt: 'text', content: 'text', tags: 'text' }, { weights: { title: 10, excerpt: 5, tags: 3, content: 1 }, name: 'article_text_idx' })
 
 export default mongoose.models.Article || mongoose.model<IArticleDocument>('Article', ArticleSchema)

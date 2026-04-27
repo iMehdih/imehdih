@@ -21,11 +21,13 @@ export default async function DashboardCoursesPage() {
     'items.productType': 'course',
   }).sort('-createdAt').lean()
 
+  const seen = new Set<string>()
   const courses: any[] = []
   for (const order of orders as any[]) {
-    for (const item of order.items) {
-      if (item.productType === 'course') {
-        courses.push({ ...item, orderNumber: order.orderNumber, purchasedAt: order.createdAt })
+    for (const item of (order as any).items) {
+      if (item.productType === 'course' && !seen.has(item.productId?.toString())) {
+        seen.add(item.productId?.toString())
+        courses.push({ ...item, orderNumber: (order as any).orderNumber, purchasedAt: (order as any).createdAt })
       }
     }
   }
@@ -48,23 +50,30 @@ export default async function DashboardCoursesPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }} className="features-grid">
           {courses.map((c, i) => (
             <div key={i} style={{ background: 'var(--b1)', border: '1px solid var(--bd)', borderRadius: 12, overflow: 'hidden' }}>
-              <div style={{ height: 140, background: 'var(--b2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, opacity: .3 }}>▶</div>
+              <div style={{ height: 140, background: 'var(--b2)', overflow: 'hidden', position: 'relative' }}>
+                {c.meta?.thumbnail ? (
+                  <img src={c.meta.thumbnail} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 40, opacity: .3 }}>▶</div>
+                )}
+              </div>
               <div style={{ padding: '16px' }}>
                 <div style={{ fontWeight: 800, fontSize: 14, marginBottom: 8, lineHeight: 1.4 }}>{c.title}</div>
                 <div style={{ fontSize: 12, color: 'var(--t3)', marginBottom: 14 }}>
                   خریداری: {new Date(c.purchasedAt).toLocaleDateString('fa-IR')}
                 </div>
-                <button className="site-btn site-btn-gold" style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '9px' }} disabled>
-                  شروع دوره (به زودی)
-                </button>
+                <Link
+                  href={`/dashboard/courses/${c.productId}`}
+                  className="site-btn site-btn-gold"
+                  style={{ width: '100%', justifyContent: 'center', fontSize: 13, padding: '9px', display: 'flex' }}
+                >
+                  ▶ شروع دوره
+                </Link>
               </div>
             </div>
           ))}
         </div>
       )}
-      <p style={{ marginTop: 16, fontSize: 12, color: 'var(--t3)', textAlign: 'center' }}>
-        پخش‌کننده دوره در هفته ۴ راه‌اندازی می‌شود.
-      </p>
     </div>
   )
 }

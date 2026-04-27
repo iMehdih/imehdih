@@ -59,6 +59,7 @@ const ProductSchema = new Schema<IProductDocument>({
 ProductSchema.index({ type: 1, isActive: 1 })
 // slug index is handled by unique: true above — no duplicate
 ProductSchema.index({ rating: -1 })
+ProductSchema.index({ title: 'text', shortDescription: 'text', description: 'text', tags: 'text' }, { weights: { title: 10, shortDescription: 5, tags: 3, description: 1 }, name: 'product_text_idx' })
 
 const Product: Model<IProductDocument> =
   mongoose.models.Product || mongoose.model<IProductDocument>('Product', ProductSchema)

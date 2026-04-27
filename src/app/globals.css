@@ -620,6 +620,13 @@ textarea.admin-input { resize:vertical; line-height:1.7; }
 .site-nav-item:hover { background:var(--b2); color:var(--t); }
 .site-nav-item.active { background:var(--gd); color:var(--gold); }
 .site-header-acts { display:flex; align-items:center; gap:8px; }
+.site-search-icon-btn { display:flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:9px; background:transparent; border:1.5px solid var(--bd); color:var(--t2); cursor:pointer; transition:all var(--ease); }
+.site-search-icon-btn:hover { background:var(--b2); color:var(--t); border-color:var(--bd2); }
+.site-search-form { display:flex; align-items:center; gap:4px; animation:fadeIn .15s ease; }
+.site-search-input { background:var(--b1); border:1.5px solid var(--bd2); border-radius:9px; padding:7px 14px; color:var(--t); font-family:var(--ff); font-size:13px; outline:none; width:200px; transition:border-color var(--ease); }
+.site-search-input:focus { border-color:var(--gold); }
+.site-search-btn { display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:8px; background:var(--gold); color:#000; border:none; cursor:pointer; flex-shrink:0; transition:background var(--ease); }
+.site-search-btn:hover { background:var(--gold2); }
 .site-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 18px; border-radius:9px; font-family:var(--ff); font-size:13px; font-weight:800; cursor:pointer; border:none; text-decoration:none; transition:all var(--ease); }
 .site-btn-gold { background:var(--gold); color:#000; }
 .site-btn-gold:hover { background:var(--gold2); }
@@ -909,5 +916,16 @@ textarea.admin-input { resize:vertical; line-height:1.7; }
 @media (max-width: 768px) {
   .db-topbar-acts .db-topbar-btn { display: none; }
   .db-topbar-acts .db-topbar-btn:last-child { display: flex; }
+}
+
+/* ── COURSE PLAYER ── */
+.course-player-wrap { display: grid; grid-template-columns: 1fr 320px; height: calc(100vh - 120px); min-height: 500px; }
+.course-player-main { display: flex; flex-direction: column; overflow: hidden; }
+.course-player-video-wrap { flex: 1; background: #000; overflow: hidden; }
+.course-player-sidebar { border-right: 1px solid var(--bd); display: flex; flex-direction: column; overflow: hidden; background: var(--b1); }
+@media (max-width: 900px) {
+  .course-player-wrap { grid-template-columns: 1fr; grid-template-rows: auto 1fr; height: auto; }
+  .course-player-video-wrap { aspect-ratio: 16/9; }
+  .course-player-sidebar { max-height: 300px; border-right: none; border-top: 1px solid var(--bd); }
 }
 

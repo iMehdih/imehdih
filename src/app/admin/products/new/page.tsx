@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import FileUpload from '@/components/ui/FileUpload'
 
 const typeOptions = [
   { val: 'theme', label: 'قالب وردپرس' },
@@ -21,7 +22,8 @@ export default function NewProductPage() {
   const [form, setForm] = useState({
     type: 'theme', title: '', slug: '', shortDescription: '',
     description: '', price: '', salePrice: '', category: '',
-    tags: '', supportDuration: '', isActive: true, isFeatured: false,
+    tags: '', supportDuration: '', thumbnail: '', downloadUrl: '',
+    isActive: true, isFeatured: false,
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -133,6 +135,31 @@ export default function NewProductPage() {
                 <label className="admin-label">مدت پشتیبانی (روز)</label>
                 <input className="admin-input" type="number" value={form.supportDuration} onChange={e => inp('supportDuration', e.target.value)} placeholder="180" dir="ltr" />
               </div>
+            </div>
+          </div>
+
+          {/* تصویر و فایل */}
+          <div className="admin-card">
+            <div className="admin-card-head"><div className="admin-card-title">تصویر و فایل</div></div>
+            <div style={{padding:20,display:'flex',flexDirection:'column',gap:14}}>
+              <FileUpload
+                value={form.thumbnail}
+                onChange={url => inp('thumbnail', url)}
+                label="تصویر بندانگشتی"
+                bucket="products"
+                folder="thumbnails"
+                hint="JPG، PNG یا WebP — حداکثر ۵ مگابایت"
+              />
+              <FileUpload
+                value={form.downloadUrl}
+                onChange={url => inp('downloadUrl', url)}
+                label="فایل دانلود (ZIP/PDF)"
+                accept=".zip,.pdf,.rar"
+                bucket="products"
+                folder="files"
+                previewType="none"
+                hint="ZIP، PDF — حداکثر ۲۰۰ مگابایت"
+              />
             </div>
           </div>
 

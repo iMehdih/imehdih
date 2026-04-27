@@ -4,10 +4,12 @@ import { cookies } from 'next/headers'
 import { verifyToken } from '@/lib/auth/jwt'
 import { connectDB } from '@/lib/db/mongoose'
 import Product from '@/models/Product'
+import Review from '@/models/Review'
 import Link from 'next/link'
 import AddToCartButton from '@/components/ui/AddToCartButton'
 import ProductGallery from '@/components/ui/ProductGallery'
 import ProductTabs from '@/components/ui/ProductTabs'
+import ProductReviews from '@/components/ui/ProductReviews'
 
 const typeLabels: Record<string, string> = {
   theme: 'قالب وردپرس', plugin: 'افزونه وردپرس',
@@ -33,14 +35,24 @@ export default async function ProductDetailPage({
   if (!product) notFound()
 
   const p = product as any
+
+  const [initialReviewsData, cookieStore] = await Promise.all([
+    Review.find({ productId: p._id, isApproved: true })
+      .populate('userId', 'firstName lastName')
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .lean(),
+    cookies(),
+  ])
+  const initialReviewsTotal = await Review.countDocuments({ productId: p._id, isApproved: true })
+
+  const token = cookieStore.get('hp_token')?.value
+  const isLoggedIn = !!token && !!(await verifyToken(token))
+
   const price = p.salePrice ?? p.price
   const isFree = p.price === 0
   const hasDiscount = p.salePrice && p.salePrice < p.price
   const discountPct = hasDiscount ? Math.round((1 - p.salePrice / p.price) * 100) : 0
-
-  const cookieStore = await cookies()
-  const token = cookieStore.get('hp_token')?.value
-  const isLoggedIn = !!token && !!(await verifyToken(token))
 
   const archivePath = typeArchive[p.type] || '/themes'
 
@@ -83,18 +95,14 @@ export default async function ProductDetailPage({
   )
 
   const reviewsContent = (
-    <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--t3)' }}>
-      <div style={{ fontSize: 36, marginBottom: 12 }}>★</div>
-      <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>
-        {p.rating > 0 ? `امتیاز: ${p.rating} از ۵` : 'هنوز نظری ثبت نشده'}
-      </div>
-      {p.reviewCount > 0 && (
-        <div style={{ fontSize: 13, color: 'var(--t3)' }}>{p.reviewCount} نظر</div>
-      )}
-      <div style={{ marginTop: 20, fontSize: 13, color: 'var(--t3)' }}>
-        سیستم نظردهی به زودی راه‌اندازی می‌شود.
-      </div>
-    </div>
+    <ProductReviews
+      productId={p._id.toString()}
+      initialReviews={JSON.parse(JSON.stringify(initialReviewsData))}
+      initialTotal={initialReviewsTotal}
+      isLoggedIn={isLoggedIn}
+      existingRating={p.rating || 0}
+      existingReviewCount={p.reviewCount || 0}
+    />
   )
 
   const faqContent = (
