@@ -4,6 +4,8 @@ import { connectDB } from '@/lib/db/mongoose'
 import Product from '@/models/Product'
 import Article from '@/models/Article'
 
+export const dynamic = 'force-dynamic'
+
 const BASE = process.env.NEXT_PUBLIC_BASE_URL || 'https://imehdih.ir'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
